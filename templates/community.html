@@ -6,6 +6,7 @@
     <title>AeroGrow - Community</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='community.css') }}">
 </head>
 <body>
     <div class="container">
@@ -28,10 +29,42 @@
                 <li><a href="#"><i class="icon">⚙️</i> Settings</a></li>
             </ul>
         </aside>
-        <main>
-            <h1>Welcome to the AeroGrow Community</h1>
-            <p>This is where you can connect with other AeroGrow users, share experiences, and learn from each other.</p>
-            <!-- Add more community content here -->
+        <main class="community-main">
+            <h1>Conversation</h1>
+            <div class="chat-container">
+                <div class="chat-messages">
+                    <div class="message user-message">
+                        <div class="message-content">
+                            <p>Hey everyone, How's it going?</p>
+                        </div>
+                    </div>
+                    <div class="message community-message">
+                        <div class="message-content">
+                            <p>Hi Amanda, Doing great! How about you?</p>
+                        </div>
+                    </div>
+                    <div class="message community-message">
+                        <div class="message-content">
+                            <p>We are great? How is the produce looking?</p>
+                        </div>
+                    </div>
+                    <div class="message user-message">
+                        <div class="message-content">
+                            <p>My tomatoes are looking great! I made gravy with them last night.</p>
+                        </div>
+                    </div>
+                    <div class="message community-message">
+                        <div class="message-content">
+                            <p>That is great. Happy to hear the tips worked.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Type your message...">
+                    <button class="send-btn">Send</button>
+                </div>
+            </div>
         </main>
     </div>
 </body>
