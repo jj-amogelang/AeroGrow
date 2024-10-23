@@ -20,46 +20,49 @@
         </nav>
         <aside>
             <ul>
-                <li class="active"><a href="{{ url_for('recommendations') }}"><i class="icon">📊</i> Dashboard</a></li>
+                <li class="active"><a href="{{ url_for('home') }}"><i class="icon">📊</i> Dashboard</a></li>
                 <li><a href="{{ url_for('community') }}"><i class="icon">🌱</i> Community</a></li>
                 <li><i class="icon">🤖</i> AeroGrow AI</li>
+                <li><a href="#"><i class="icon">🏆</i> Certifications</a></li>
+                <li><a href="#"><i class="icon">💰</i> Programs & Funding</a></li>
+                <li><a href="#"><i class="icon">⚙️</i> Settings</a></li>
             </ul>
         </aside>
 
         <main>
-            <h1>Your Farming Recommendations</h1>
-            <div class="recommendations-container">
-                {% for recommendation in recommendations %}
-                    <div class="recommendation-card">
-                        <h3>Recommendation {{ loop.index }}</h3>
-                        <p>{{ recommendation }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-            <a href="{{ url_for('home') }}" class="main-button">Go Back</a>
-
             <h2>Learning Path</h2>
-            <div class="learning-path">
-                {% if recommendations %}
-                    <h3>Relevant Videos</h3>
-                    <div class="video-container">
-                        {% for video in recommendations %}
-                            <div class="video-card">
-                                <iframe width="560" height="315" src="{{ video }}" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <p>No relevant videos found for your selections.</p>
-                {% endif %}
+            <div class="learning-grid">
+                <div class="learning-item">
+                    <h3>Plant Basics</h3>
+                    <p>Progress: 40%</p>
+                </div>
+                <div class="learning-item">
+                    <h3>Nutrient Mix</h3>
+                    <p>Progress: 55%</p>
+                </div>
+                <div class="learning-item">
+                    <h3>Lighting Tips</h3>
+                    <p>Progress: 25%</p>
+                </div>
+                <div class="learning-item">
+                    <h3>Water System</h3>
+                    <p>Progress: 70%</p>
+                </div>
+                <div class="learning-item">
+                    <h3>Growth Cycle</h3>
+                    <p>Progress: 85%</p>
+                </div>
+                <div class="learning-item">
+                    <h3>Troubleshooting</h3>
+                    <p>Progress: 15%</p>
+                </div>
             </div>
             <div class="community-cta">
                 <h2>Time to Join the Community!</h2>
                 <p>Connect with fellow enthusiasts and grow your skills together.</p>
-                <a href="{{ url_for('community') }}" class="community-btn">Go to Community</a>
+                <button class="community-btn">Go to Community</button>
             </div>
         </main>
-        
         <footer>
             <div class="user-profile">
                 <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="User Avatar">
@@ -69,4 +72,3 @@
         </footer>
     </div>
 </body>
-</html>
