@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Agro Services</title>
+    <title>AeroGrow</title>
     <script>
-        const apiKey = 'ef93ffe8bf8d4e809578cc798fdfc7c4'; // Replace with your OpenCage API key
+        const apiKey = ''; // Replace with your OpenCage API key
 
         function toggleDropdown() {
             document.getElementById("languageDropdown").classList.toggle("show");
@@ -55,6 +55,27 @@
                         const city = data.results[0].components.city || data.results[0].components.town || data.results[0].components.village;
                         const country = data.results[0].components.country;
                         document.getElementById("location").innerText = `Location: ${city}, ${country}`;
+                        
+                        // Fetch climate data using OpenWeatherMap API
+                        fetch('/get_weather', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ city: city, country: country })
+                        })
+                        .then(response => response.json())
+                        .then(weatherData => {
+                            if (weatherData.temperature) {
+                                document.getElementById("weatherInfo").innerText = `Current Temperature: ${weatherData.temperature} °C`;
+                            } else {
+                                document.getElementById("weatherInfo").innerText = "Error fetching weather data.";
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching weather data:', error);
+                            document.getElementById("weatherInfo").innerText = "Error fetching weather data.";
+                        });
                     } else {
                         document.getElementById("location").innerText = "Location not found.";
                     }
@@ -95,7 +116,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>EduFarm</h1>
+            <h1>AeroGrow</h1>
             <div class="language-dropdown">
                 <img src="{{ url_for('static', filename='images/language.jpg') }}" alt="Language" class="language-icon" onclick="toggleDropdown()">
                 <div id="languageDropdown" class="dropdown-content">
@@ -113,6 +134,7 @@
                 <p>41.1 °C</p>
             </div>
             <p id="location">Fetching location...</p> <!-- Display city and country here -->
+            <p id="weatherInfo">Fetching temperature...</p> <!-- Display current temperature here -->
         </div>
         
         <!-- Hero Image -->

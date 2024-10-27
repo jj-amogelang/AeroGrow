@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+import requests
 from content_database import content_database  # Import the content database
 
 app = Flask(__name__)
+
+# Your OpenWeatherMap API key
+OPENWEATHER_API_KEY = ''
 
 @app.route('/')
 def home():
@@ -36,6 +40,23 @@ def get_relevant_content(crop_type, farm_size, farm_location):
             relevant_videos.extend(size_data.get("videos", []))
 
     return relevant_recommendations, relevant_videos
+
+@app.route('/get_weather', methods=['POST'])
+def get_weather():
+    # Get the location data from the request
+    city = request.json.get('city')
+    country = request.json.get('country')
+
+    # Fetch weather data from OpenWeatherMap
+    weather_url = f'https://api.openweathermap.org/data/2.5/weather?q={city},{country}&units=metric&appid={OPENWEATHER_API_KEY}'
+    response = requests.get(weather_url)
+
+    if response.status_code == 200:
+        weather_data = response.json()
+        temperature = weather_data['main']['temp']
+        return jsonify({'temperature': temperature})
+    else:
+        return jsonify({'error': 'Unable to fetch weather data'}), response.status_code
 
 @app.route('/community')
 def community():
