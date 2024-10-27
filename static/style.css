@@ -1,0 +1,235 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px; /* Limit the width of the container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+    background-color: #fff; /* White background for the container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.weather {
+    text-align: center;
+}
+
+.hero-image {
+    margin: 20px 0; /* Space above and below the hero image */
+    text-align: center; /* Center the image */
+}
+
+.hero-image img {
+    width: 100%; /* Make the image responsive */
+    max-width: 2000px; /* Set a maximum width */
+    height: 400px; /* Set a specific height */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.main-button {
+    display: block; /* Center the button */
+    margin: 20px auto; /* Center the button */
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.main-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.services {
+    margin-top: 20px; /* Space above the services section */
+}
+
+.service-icons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+.icon {
+    background-color: #e0e0e0;
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s; /* Add shadow effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.icon img {
+    width: 100px; /* Adjust image size */
+    height: 100px; /* Adjust image size */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+    border-radius: 10px; /* Optional: rounded corners */
+}
+
+.icon p {
+    margin-top: 10px;
+    font-weight: bold; /* Make text bold */
+}
+
+.icon:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.weather-info {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+}
+
+.weather-icon {
+    width: 130px; /* Adjust icon size */
+    height: 100px; /* Adjust icon size */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Space between title and dropdown */
+    align-items: center; /* Center items vertically */
+}
+
+.language-dropdown {
+    position: relative; /* Position relative for dropdown */
+}
+
+.language-icon {
+    width: 40px; /* Adjust icon size */
+    height: 37px; /* Adjust icon size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position it below the icon */
+    right: 0; /* Align to the right */
+    background-color: #f9f9f9; /* Background color */
+    min-width: 100px; /* Minimum width */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow */
+    z-index: 1; /* Ensure it appears above other elements */
+}
+
+.dropdown-content a {
+    color: black; /* Text color */
+    padding: 10px; /* Padding */
+    text-decoration: none; /* No underline */
+    display: block; /* Block display */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Background on hover */
+}
+
+.show {
+    display: block; /* Show the dropdown */
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background with opacity */
+}
+
+.modal-content {
+    background-color: #ffffff; /* White background */
+    margin: 10% auto; /* Centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Full width */
+    max-width: 500px; /* Maximum width */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition */
+    animation: slideIn 0.5s; /* Animation for modal */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #ff4d4d; /* Red color for close button */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth transition */
+}
+
+.close:hover,
+.close:focus {
+    color: #ff1a1a; /* Darker red on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h2 {
+    color: #333; /* Darker text color for heading */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold; /* Bold labels */
+    color: #555; /* Darker color for labels */
+}
+
+select {
+    margin-bottom: 20px; /* Space below select */
+    padding: 10px; /* Padding for select */
+    border: 1px solid #ccc; /* Border for select */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s; /* Smooth transition */
+}
+
+select:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    outline: none; /* Remove outline */
+}
+
+button[type="submit"] {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}

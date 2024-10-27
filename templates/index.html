@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Agro Services</title>
+    <script>
+        const apiKey = 'ef93ffe8bf8d4e809578cc798fdfc7c4'; // Replace with your OpenCage API key
+
+        function toggleDropdown() {
+            document.getElementById("languageDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.language-icon')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        function openModal(serviceName) {
+            document.getElementById("modalHeading").innerText = "You picked " + serviceName;
+            document.getElementById("infoModal").style.display = "block";
+            // Store the crop type in a hidden input field
+            document.getElementById("cropType").value = serviceName;
+        }
+
+        function closeModal() {
+            document.getElementById("infoModal").style.display = "none";
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // Fetch city and country using reverse geocoding
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results.length > 0) {
+                        const city = data.results[0].components.city || data.results[0].components.town || data.results[0].components.village;
+                        const country = data.results[0].components.country;
+                        document.getElementById("location").innerText = `Location: ${city}, ${country}`;
+                    } else {
+                        document.getElementById("location").innerText = "Location not found.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching location:', error);
+                    document.getElementById("location").innerText = "Error fetching location.";
+                });
+
+            // Optionally, send the coordinates to the server
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longitude").value = longitude;
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        // Automatically get location when the page loads
+        window.onload = function() {
+            getLocation();
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>EduFarm</h1>
+            <div class="language-dropdown">
+                <img src="{{ url_for('static', filename='images/language.jpg') }}" alt="Language" class="language-icon" onclick="toggleDropdown()">
+                <div id="languageDropdown" class="dropdown-content">
+                    <a href="#">English</a>
+                    <a href="#">Zulu</a>
+                    <a href="#">Southern Sotho</a>
+                    <a href="#">Tsonga</a>
+                </div>
+            </div>
+        </div>
+        <div class="weather">
+            <h2>Weather</h2>
+            <div class="weather-info">
+                <img src="{{ url_for('static', filename='images/weather.jpg') }}" alt="Weather Icon" class="weather-icon">
+                <p>41.1 °C</p>
+            </div>
+            <p id="location">Fetching location...</p> <!-- Display city and country here -->
+        </div>
+        
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Hero Image">
+        </div>
+
+        <button class="main-button">Major crops in May</button>
+        
+        <div class="services">
+            <h3>Crops</h3>
+            <div class="service-icons">
+                <div class="icon" onclick="openModal('Corn')">
+                    <img src="{{ url_for('static', filename='images/corn.jpg') }}" alt="Corn">
+                    <p>Corn</p>
+                </div>
+                <div class="icon" onclick="openModal('Tomatoes')">
+                    <img src="{{ url_for('static', filename='images/tomatoes.jpg') }}" alt="Tomatoes">
+                    <p>Tomatoes</p>
+                </div>
+                <div class="icon" onclick="openModal('Potatoes')">
+                    <img src="{{ url_for('static', filename='images/potatoes.jpg') }}" alt="Potatoes">
+                    <p>Potatoes</p>
+                </div>
+                <div class="icon" onclick="openModal('Rice')">
+                    <img src="{{ url_for('static', filename='images/rice.jpg') }}" alt="Rice">
+                    <p>Rice</p>
+                </div>
+                <div class="icon" onclick="openModal('Wheat')">
+                    <img src="{{ url_for('static', filename='images/wheat.jpg') }}" alt="Wheat">
+                    <p>Wheat</p>
+                </div>
+                <div class="icon" onclick="openModal('Soybeans')">
+                    <img src="{{ url_for('static', filename='images/soybeans.jpg') }}" alt="Soybeans">
+                    <p>Soybeans</p>
+                </div>
+                <div class="icon" onclick="openModal('Bananas')">
+                    <img src="{{ url_for('static', filename='images/bananas.jpg') }}" alt="Bananas">
+                    <p>Bananas</p>
+                </div>
+                <div class="icon" onclick="openModal('Cassava')">
+                    <img src="{{ url_for('static', filename='images/cassava.jpg') }}" alt="Cassava">
+                    <p>Cassava</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Farm Information -->
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modalHeading">Farm Information</h2>
+                <form action="{{ url_for('recommendations') }}" method="POST">
+                    <input type="hidden" id="cropType" name="cropType" value="">
+                    <label for="farmSize">Farm Size:</label>
+                    <select id="farmSize" name="farmSize" required>
+                        <option value="small">Small-Scale (0.5 - 5 hectares)</option>
+                        <option value="medium">Medium-Scale (5 - 20 hectares)</option>
+                        <option value="large">Large-Scale (20 - 50 hectares)</option>
+                        <option value="commercial">Commercial-Scale (50+ hectares)</option>
+                    </select>
+                    <br>
+                    <label for="farmLocation">Farm Location:</label>
+                    <select id="farmLocation" name="farmLocation" required>
+                        <option value="Limpopo">Limpopo</option>
+                        <option value="Eastern Cape">Eastern Cape</option>
+                        <option value="Western Cape">Western Cape</option>
+                        <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                    </select>
+                    <br>
+                    <input type="hidden" id="latitude" name="latitude" value="">
+                    <input type="hidden" id="longitude" name="longitude" value="">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

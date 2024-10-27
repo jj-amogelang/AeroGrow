@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGrow - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">AeroGrow</div>
+            <ul class="nav-links">
+                <li class="active"><a href="{{ url_for('home') }}">HOME</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <button class="continue-btn">Continue</button>
+        </nav>
+        <aside>
+            <ul>
+                <li class="active"><a href="{{ url_for('recommendations') }}"><i class="icon">📊</i> Dashboard</a></li>
+                <li><a href="{{ url_for('community') }}"><i class="icon">🌱</i> Community</a></li>
+                <li><i class="icon">🤖</i> AeroGrow AI</li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Your Farming Recommendations</h1>
+            <div class="recommendations-container">
+                {% for recommendation in recommendations %}
+                    <div class="recommendation-card">
+                        <h3>Recommendation {{ loop.index }}</h3>
+                        <p>{{ recommendation }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{{ url_for('home') }}" class="main-button">Go Back</a>
+
+            <h2>Learning Path</h2>
+            <div class="learning-path">
+                {% if recommendations %}
+                    <h3>Relevant Videos</h3>
+                    <div class="video-container">
+                        {% for video in recommendations %}
+                            <div class="video-card">
+                                <iframe width="560" height="315" src="{{ video }}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No relevant videos found for your selections.</p>
+                {% endif %}
+            </div>
+            <div class="community-cta">
+                <h2>Time to Join the Community!</h2>
+                <p>Connect with fellow enthusiasts and grow your skills together.</p>
+                <a href="{{ url_for('community') }}" class="community-btn">Go to Community</a>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="user-profile">
+                <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="User Avatar">
+                <span>Amanda</span>
+                <a href="#">View profile</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
