@@ -5,7 +5,7 @@ from content_database import content_database  # Import the content database
 app = Flask(__name__)
 
 # Your OpenWeatherMap API key
-OPENWEATHER_API_KEY = ''
+OPENWEATHER_API_KEY = 'd2c3bebe233beec28447108d23b4661b'
 
 @app.route('/')
 def home():
@@ -43,11 +43,10 @@ def get_relevant_content(crop_type, farm_size, farm_location):
 
 @app.route('/get_weather', methods=['POST'])
 def get_weather():
-    # Get the location data from the request
     city = request.json.get('city')
     country = request.json.get('country')
 
-    # Fetch weather data from OpenWeatherMap
+    # Fetch current weather data from OpenWeatherMap
     weather_url = f'https://api.openweathermap.org/data/2.5/weather?q={city},{country}&units=metric&appid={OPENWEATHER_API_KEY}'
     response = requests.get(weather_url)
 
@@ -57,6 +56,40 @@ def get_weather():
         return jsonify({'temperature': temperature})
     else:
         return jsonify({'error': 'Unable to fetch weather data'}), response.status_code
+
+@app.route('/get_forecast', methods=['POST'])
+def get_forecast():
+    city = request.json.get('city')
+    country = request.json.get('country')
+
+    # Fetch 5-day weather forecast from OpenWeatherMap
+    forecast_url = f'https://api.openweathermap.org/data/2.5/forecast?q={city},{country}&units=metric&appid={OPENWEATHER_API_KEY}'
+    response = requests.get(forecast_url)
+
+    if response.status_code == 200:
+        forecast_data = response.json()
+        # Extract relevant forecast data
+        forecast_list = []
+        for item in forecast_data['list']:
+            date = item['dt_txt'].split(" ")[0]  # Get the date part
+            temp = item['main']['temp']
+            forecast_list.append({'date': date, 'temp': temp})
+
+        # Group by date and take the average temperature for each day
+        daily_forecast = {}
+        for entry in forecast_list:
+            date = entry['date']
+            temp = entry['temp']
+            if date not in daily_forecast:
+                daily_forecast[date] = []
+            daily_forecast[date].append(temp)
+
+        # Calculate average temperatures
+        average_forecast = [{'date': date, 'temp': sum(temps) / len(temps)} for date, temps in daily_forecast.items()]
+
+        return jsonify(average_forecast)
+    else:
+        return jsonify({'error': 'Unable to fetch forecast data'}), response.status_code
 
 @app.route('/community')
 def community():
