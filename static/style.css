@@ -7,7 +7,6 @@ body {
 
 .container {
     min-height: 100vh;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .weather {
@@ -300,4 +299,60 @@ button[type="submit"]:hover {
     flex: 1; /* Allow items to grow */
     margin: 5px; /* Space between items */
     text-align: center;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* White background */
+    padding: 10px 20px; /* Padding for the navbar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.nav-links {
+    list-style: none; /* Remove bullet points */
+    display: flex; /* Flexbox for horizontal layout */
+    gap: 20px; /* Space between links */
+    margin: 15px auto;
+}
+
+.nav-links li {
+    display: inline; /* Inline display for list items */
+}
+
+.nav-links a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Dark text color */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.nav-links a:hover {
+    color: #4CAF50; /* Green color on hover */
+}
+
+/* Welcome Section Styles */
+.welcome-section {
+    text-align: center; /* Center the text */
+    margin: 40px 0; /* Margin for spacing */
+    padding: 20px; /* Padding for the section */
+}
+
+.welcome-section h1 {
+    font-size: 2.5em; /* Large font size for the heading */
+    color: #4CAF50; /* Green color for the heading */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+.tagline {
+    font-size: 1.2em; /* Slightly smaller font size for the tagline */
+    color: #555; /* Dark gray color for the tagline */
+    font-style: italic; /* Italic style for emphasis */
 }

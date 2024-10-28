@@ -6,12 +6,25 @@
     <title>AeroGrow - Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FullCalendar CSS -->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css' rel='stylesheet' />
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">
+            AeroGrow
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact Us</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <aside class="sidebar">
             <nav>
-                <a href="{{ url_for('home') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('recommendations') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
                 <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
                 <a href=""><i class="icon">🤖</i>AeroGro AI</a>
                 <a href=""><i class="icon">🏆</i> Certifications</a>
@@ -22,7 +35,7 @@
         <main class="main-content">
             <section class="intro-section">
                 <h2>Read before you start</h2>
-                <p>Hello my student! 👋 Economics isn't just a subject - it's the lens through which we view society. From micro to macroeconomics, I'll help you discover the economic phenomena in my comprehensive courses. First of all, let me tell you a little about myself and the most important thing - how to get started?</p>
+                <p>Hello Student! 👋 Welcome to the Course Page! Here, you'll find a variety of lessons designed to help you learn traditional farming methods and practices. To keep up with the times, we've also included some modern farming methods like hydroponics and permaculture. Let's get started!</p>
                 
                 <div class="video-container">
                     <div class="video-thumbnail">
@@ -32,11 +45,12 @@
                     <h3>Part 1: How to get started</h3>
                 </div>
 
+                <h4>This app is tailored to your needs and circumstances. You learn about crops of your choice, related to your location and climate.</h4>
                 <p>I hope you enjoyed your first introductory video and are ready to dive in. Are you? Let’s see what’s next:</p>
                 <ul>
-                    <li>During the first week of our course, we will have a sort of introduction to <strong>Business Management as a whole</strong>.</li>
-                    <li>Then we'll move seamlessly to <strong>Foundations of Company Management</strong>. Important thing for our further study.</li>
-                    <li>After that - exciting things await us: we will run an <strong>Implementing Effective Management</strong> lesson with a guest.</li>
+                    <li>Under learning paths, you will find a list of courses that cover the basics of traditional farming methods and practices.</li>
+                    <li>You can choose to complete the courses in any order, but we recommend starting with the basics and working your way up to more complex topics.</li>
+                    <li>Once you've completed the course, you can take a test to test your knowledge and earn a certificate.</li>
                 </ul>
             </section>
             <div class="header">
@@ -55,6 +69,10 @@
                                     <iframe src="{{ video }}" frameborder="0" allowfullscreen></iframe>
                                 {% endfor %}
                             </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
                             <div class="article">
                                 <h5>Recommended Articles</h5>
                                 {% for article in course.articles %}
@@ -73,25 +91,9 @@
                     </div>
                 {% endfor %}
             </div>
-
-            <h2>Farm Size Recommendations</h2>
-            <div class="recommendations-container">
-                <ul>
-                    {% for recommendation in farm_size_recommendations %}
-                        <li>{{ recommendation }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <h2>Location Recommendations</h2>
-            <div class="recommendations-container">
-                <ul>
-                    {% for recommendation in location_recommendations %}
-                        <li>{{ recommendation }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
+            <br>
+            <br>
+            <br>
             <h2>Alternative Farming Methods</h2>
             <div class="recommendations-container">
                 <div class="course-card">
@@ -117,7 +119,7 @@
                     <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="User Avatar" style="width: 40px; border-radius: 50%;">
                 </div>
             </div>
-            <div class="calendar">
+            <div id="calendar">
                 <h2>Calendar</h2>
                 <!-- Calendar component can be added here -->
             </div>
@@ -144,5 +146,43 @@
         }
     }
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth', // Default view
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: [
+                // Example events
+                {
+                    title: 'Event 1',
+                    start: '2024-04-01'
+                },
+                {
+                    title: 'Event 2',
+                    start: '2024-04-05',
+                    end: '2024-04-07'
+                },
+                {
+                    title: 'Event 3',
+                    start: '2024-04-09T12:30:00',
+                    allDay: false // will make the time show
+                }
+            ],
+            dateClick: function(info) {
+                alert('Date: ' + info.dateStr);
+            }
+        });
+
+        calendar.render();
+    });
+    </script>
+    <!-- FullCalendar JS -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js'></script>
 </body>
 </html>

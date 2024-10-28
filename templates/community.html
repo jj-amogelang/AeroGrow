@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeroGrow - Community</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }} -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='community.css') }}">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">
+            AeroGrow
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact Us</a></li>
+        </ul>
+    </nav>
     <div class="community-container">
         <aside class="sidebar">
             <nav>
                 <a href="{{ url_for('home') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
                 <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
                 <a href=""><i class="icon">🤖</i>AeroGro AI</a>
                 <a href=""><i class="icon">🏆</i> Certifications</a>

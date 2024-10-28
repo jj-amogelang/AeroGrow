@@ -1,3 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Lighter background */
+}
+
+.container {
+    display: flex; /* Flexbox layout for sidebar and main content */
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px; /* Fixed width for sidebar */
+    background-color: #333; /* Dark background for sidebar */
+    color: white;
+    padding: 20px;
+}
+
+.sidebar a {
+    color: white; /* White text for links */
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    transition: background 0.3s;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.1); /* Light hover effect */
+}
+
 .community-container {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -82,3 +114,41 @@
     margin-left: 10px;
     cursor: pointer;
 }
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* White background */
+    padding: 10px 20px; /* Padding for the navbar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.nav-links {
+    list-style: none; /* Remove bullet points */
+    display: flex; /* Flexbox for horizontal layout */
+    gap: 20px; /* Space between links */
+    margin: 15px auto;
+}
+
+.nav-links li {
+    display: inline; /* Inline display for list items */
+}
+
+.nav-links a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Dark text color */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.nav-links a:hover {
+    color: #4CAF50; /* Green color on hover */
+}
+

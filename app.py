@@ -5,15 +5,19 @@ import json
 app = Flask(__name__)
 
 # Your OpenWeatherMap API key
-OPENWEATHER_API_KEY = ''
+OPENWEATHER_API_KEY = 'd2c3bebe233beec28447108d23b4661b'
 
 # Load course content from JSON file
 with open('course_content.json') as f:
     course_content = json.load(f)
 
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
+
+@app.route('/recommendations')
+def home():
+    return render_template('dashboard.html')
 
 @app.route('/recommendations', methods=['POST'])
 def recommendations():
@@ -106,6 +110,10 @@ def dashboard():
                            courses=courses, 
                            farm_size_recommendations=farm_size_recommendations, 
                            location_recommendations=location_recommendations)
+
+@app.route('/test')
+def test():
+    return render_template('test.html')  # Ensure this points to your test.html file
 
 if __name__ == '__main__':
     app.run(debug=True)

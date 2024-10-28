@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Course Test</title>
+    <link rel="stylesheet" href="/static/dashboard.css"> <!-- Link to your CSS file -->
+    <style>
+        /* Add your existing CSS styles here */
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .question label {
+            font-weight: bold;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green */
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e0f7fa; /* Light blue */
+            border: 1px solid #b2ebf2;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+        }
+
+        .action-buttons button {
+            width: 48%; /* Make buttons side by side */
+            margin: 0 1%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            AeroGrow
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <a href="{{ url_for('home') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
+                <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
+                <a href="ai.html"><i class="icon">🤖</i>AeroGro AI</a>
+                <a href="certifications.html"><i class="icon">🏆</i>Certifications</a>
+                <a href="funding.html"><i class="icon">💰</i>Programs and Funding</a>
+                <a href="settings.html"><i class="icon">⚙️</i>Settings</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h1>Farming Course Test</h1>
+            <form id="testForm">
+                <div class="question">
+                    <label>1. What is the primary benefit of crop rotation?</label><br>
+                    <input type="checkbox" name="q1" value="Increases soil fertility"> Increases soil fertility<br>
+                    <input type="checkbox" name="q1" value="Reduces pests"> Reduces pests<br>
+                    <input type="checkbox" name="q1" value="Increases yield"> Increases yield<br>
+                    <input type="checkbox" name="q1" value="All of the above"> All of the above<br>
+                </div>
+                <div class="question">
+                    <label>2. What is a common method for conserving soil moisture?</label><br>
+                    <input type="checkbox" name="q2" value="Mulching"> Mulching<br>
+                    <input type="checkbox" name="q2" value="Irrigation"> Irrigation<br>
+                    <input type="checkbox" name="q2" value="Crop rotation"> Crop rotation<br>
+                    <input type="checkbox" name="q2" value="Planting cover crops"> Planting cover crops<br>
+                </div>
+                <div class="question">
+                    <label>3. Name one benefit of using cover crops.</label><br>
+                    <input type="checkbox" name="q3" value="Prevents erosion"> Prevents erosion<br>
+                    <input type="checkbox" name="q3" value="Increases pests"> Increases pests<br>
+                    <input type="checkbox" name="q3" value="Decreases soil fertility"> Decreases soil fertility<br>
+                    <input type="checkbox" name="q3" value="None of the above"> None of the above<br>
+                </div>
+                <div class="question">
+                    <label>4. What is the best time to plant corn?</label><br>
+                    <input type="checkbox" name="q4" value="Spring"> Spring<br>
+                    <input type="checkbox" name="q4" value="Winter"> Winter<br>
+                    <input type="checkbox" name="q4" value="Fall"> Fall<br>
+                    <input type="checkbox" name="q4" value="Summer"> Summer<br>
+                </div>
+                <div class="question">
+                    <label>5. What is a benefit of organic farming?</label><br>
+                    <input type="checkbox" name="q5" value="No chemical pesticides"> No chemical pesticides<br>
+                    <input type="checkbox" name="q5" value="Higher yields"> Higher yields<br>
+                    <input type="checkbox" name="q5" value="Lower costs"> Lower costs<br>
+                    <input type="checkbox" name="q5" value="All of the above"> All of the above<br>
+                </div>
+                <button type="submit">Submit Test</button>
+            </form>
+            <div id="result" style="display:none;"></div>
+
+            <!-- Modal for action buttons -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <h2>Test Completed!</h2>
+                    <div id="modalResult"></div>
+                    <div class="action-buttons">
+                        <button id="retakeTest">Retake Test</button>
+                        <button id="getCertificate">Get Farming Certificate</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Correct answers
+            const correctAnswers = {
+                q1: ["Increases soil fertility", "Reduces pests", "Increases yield", "All of the above"],
+                q2: ["Mulching", "Irrigation", "Planting cover crops"],
+                q3: ["Prevents erosion"],
+                q4: ["Spring"],
+                q5: ["No chemical pesticides", "All of the above"]
+            };
+
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+
+            // Check answers
+            for (let question in correctAnswers) {
+                const selectedOptions = Array.from(document.querySelectorAll(`input[name="${question}"]:checked`)).map(el => el.value);
+                const isCorrect = correctAnswers[question].every(answer => selectedOptions.includes(answer)) && selectedOptions.length === correctAnswers[question].length;
+
+                if (isCorrect) {
+                    score++;
+                }
+            }
+
+            // Display result in modal
+            const modalResult = document.getElementById('modalResult');
+            modalResult.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
+            document.getElementById('myModal').style.display = 'block'; // Show the modal
+        });
+
+        // Retake Test button functionality
+        document.getElementById('retakeTest').addEventListener('click', function() {
+            document.getElementById('testForm').reset(); // Reset the form
+            document.getElementById('myModal').style.display = 'none'; // Hide modal
+        });
+
+        // Get Farming Certificate button functionality
+        document.getElementById('getCertificate').addEventListener('click', function() {
+            alert('Congratulations! You have earned your Farming Certificate!'); // Placeholder action
+            // You can redirect to a certificate page or generate a certificate here
+        });
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>

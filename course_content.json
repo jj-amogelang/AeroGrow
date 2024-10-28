@@ -38,7 +38,7 @@
                         }
                     ],
                     "tips": [
-                        "Ensure proper irrigation.",
+                        "Also called Indian corn;. a tall cereal plant, Zea mays, cultivated in many varieties, having a jointed, solid stem and bearing the grain, seeds, or kernels on large ears.",
                         "Use crop rotation."
                     ]
                 }
@@ -48,21 +48,24 @@
             "courses": [
                 {
                     "title": "Plant Basics",
-                    "sessions_completed": "8/12",
                     "content": "Learn about Tomato Growing",
                     "videos": [
-                        "https://www.youtube.com/embed/video3",
-                        "https://www.youtube.com/embed/video4"
+                        "https://www.youtube.com/embed/aRNUEW51fvI",
+                        "https://www.youtube.com/embed/YTuvULTlodw"
                     ],
                     "articles": [
                         {
                             "title": "Tomato Care Guide",
-                            "url": "https://example.com/tomato-article"
+                            "url": "https://eos.com/crop-management-guide/tomato-growth-stages/"
+                        },
+                        {
+                            "title": "Tomato Growth Timeline",
+                            "url": "https://www.rasnetwork.org/plant-diseases-care/tomato-plant-growth-timeline-pictures/"
                         }
                     ],
                     "tips": [
-                        "Prune regularly.",
-                        "Monitor for pests."
+                        "The tomato (Solanum lycopersicum) is a fruit from the nightshade family native to South America.",
+                        "Despite botanically being a fruit, it’s generally eaten and prepared like a vegetable. They are a great source of vitamin C, potassium, folate, and vitamin K."
                     ],
                     "alternative_methods": [
                         {

@@ -1,5 +1,6 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4; /* Lighter background */
@@ -266,3 +267,101 @@ h2 {
 .sessions {
     color: #757575; /* Color for sessions */
 }
+
+#calendar {
+    max-width: 900px;
+    margin: 40px auto;
+}
+.fc-day.fc-today {
+    background-color: #d1c4e9; /* Light purple background for today's date */
+}
+
+.question {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.question label {
+    font-weight: bold;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e0f7fa; /* Light blue */
+    border: 1px solid #b2ebf2;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.action-buttons {
+    margin-top: 20px;
+    display: none; /* Hidden by default */
+}
+
+.action-buttons button {
+    width: 48%; /* Make buttons side by side */
+    margin: 0 1%;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* White background */
+    padding: 10px 20px; /* Padding for the navbar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.nav-links {
+    list-style: none; /* Remove bullet points */
+    display: flex; /* Flexbox for horizontal layout */
+    gap: 20px; /* Space between links */
+    margin: 15px auto;
+}
+
+.nav-links li {
+    display: inline; /* Inline display for list items */
+}
+
+.nav-links a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Dark text color */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.nav-links a:hover {
+    color: #4CAF50; /* Green color on hover */
+}
+

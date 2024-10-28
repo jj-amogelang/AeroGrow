@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>AeroGrow</title>
     <script>
-        const apiKey = ''; // Replace with your OpenCage API key
+        const apiKey = 'ef93ffe8bf8d4e809578cc798fdfc7c4'; // Replace with your OpenCage API key
 
         function toggleDropdown() {
             document.getElementById("languageDropdown").classList.toggle("show");
@@ -142,19 +142,17 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>AeroGrow</h1>
-            <div class="language-dropdown">
-                <img src="{{ url_for('static', filename='images/language.jpg') }}" alt="Language" class="language-icon" onclick="toggleDropdown()">
-                <div id="languageDropdown" class="dropdown-content">
-                    <a href="#">English</a>
-                    <a href="#">Zulu</a>
-                    <a href="#">Southern Sotho</a>
-                    <a href="#">Tsonga</a>
-                </div>
-            </div>
+    <nav class="navbar">
+        <div class="logo">
+            AeroGrow
         </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="container">
         <div class="weather-container">
             <div class="current-weather">
                 <h3 id="location"></h3> <!-- Display city and country here -->
@@ -169,13 +167,16 @@
                 <div id="forecast" class="forecast-items"></div> <!-- Forecast data will be populated here -->
             </div>
         </div>
+
+        <div class="welcome-section">
+            <h1>Welcome to AeroGrow</h1>
+            <p class="tagline">Your journey to sustainable farming education starts here!</p>
+        </div>
         
         <!-- Hero Image -->
         <div class="hero-image">
             <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Hero Image">
         </div>
-
-        <button class="main-button">Major crops in May</button>
         
         <div class="services">
             <h3>Crops</h3>
