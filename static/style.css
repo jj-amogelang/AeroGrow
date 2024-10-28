@@ -356,3 +356,35 @@ button[type="submit"]:hover {
     color: #555; /* Dark gray color for the tagline */
     font-style: italic; /* Italic style for emphasis */
 }
+
+/* Instruction Section Styles */
+.instruction-section {
+    text-align: center; /* Center the text */
+    margin: 40px 0; /* Margin for spacing */
+    padding: 20px; /* Padding for the section */
+    background-color: #f0f8ff; /* Light blue background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.instruction-section h2 {
+    font-size: 2em; /* Large font size for the heading */
+    color: #333; /* Dark color for the heading */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+.instruction-section p {
+    font-size: 1.2em; /* Slightly larger font size for the paragraph */
+    color: #555; /* Dark gray color for the paragraph */
+}
+
+.instruction-section ol {
+    text-align: left; /* Align list items to the left */
+    display: inline-block; /* Center the list */
+    margin: 0 auto; /* Center the list */
+    padding: 0; /* Remove default padding */
+}
+
+.instruction-section li {
+    margin: 10px 0; /* Space between list items */
+}

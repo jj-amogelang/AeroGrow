@@ -177,9 +177,17 @@
         <div class="hero-image">
             <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Hero Image">
         </div>
-        
+
+        <div class="instruction-section">
+        <h2>Getting Started with AeroGrow</h2>
+        <p>Follow these simple steps to get started:</p>
+        <ol>
+            <li>Click on one of the crops below.</li>
+            <li>Select your farm size and location.</li>
+            <li>You will be taken to your tailored dashboard!</li>
+        </ol>
+        </div>
         <div class="services">
-            <h3>Crops</h3>
             <div class="service-icons">
                 <div class="icon" onclick="openModal('Corn')">
                     <img src="{{ url_for('static', filename='images/corn.jpg') }}" alt="Corn">

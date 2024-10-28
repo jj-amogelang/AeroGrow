@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- FullCalendar CSS -->
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -100,14 +101,14 @@
                     <img src="/static/images/hydroponics.jpg" alt="Course Image" class="course-image">
                     <div class="course-info">
                         <span class="level beginner">Hydroponics</span>
-                        <h3>Three-month Course to Learn the Basics of Python and Start Coding.</h3>
+                        <h3>Hydroponics is the technique of growing plants using a water-based nutrient solution rather than soil, and can include an aggregate substrate, or growing media, such as vermiculite, coconut coir, or perlite.</h3>
                     </div>
                 </div>
                 <div class="course-card">
                     <img src="/static/images/permaculture.jpg" alt="Course Image" class="course-image">
                     <div class="course-info">
                         <span class="level beginner">Permaculture</span>
-                        <h3>Three-month Course to Learn the Basics of Python and Start Coding.</h3>
+                        <h3>Permaculture is an approach to land management and settlement design that adopts arrangements observed in flourishing natural ecosystems. </h3>
                     </div>
                 </div>
             </div>
@@ -116,23 +117,23 @@
             <div class="header">
                 <div class="user-info">
                     <span>Friday, April 5, 2024</span>
-                    <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="User Avatar" style="width: 40px; border-radius: 50%;">
+                    <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="User Avatar" style="width: 40px; border-radius: 50%;">
                 </div>
             </div>
-            <div id="calendar">
+            <div id="calendar-container">
                 <h2>Calendar</h2>
-                <!-- Calendar component can be added here -->
+                <div id="calendar"></div>
             </div>
             <div class="overall-info">
                 <h2>Overall Information</h2>
-                <p>Score: 210</p>
-                <p>Completed Course: 34h</p>
-                <p>Total Students: 17</p>
+                <p>Score: </p>
+                <p>Completed Course: </p>
+                <p>Total Students: </p>
                 <p>Total Hours: 11</p>
             </div>
-            <div class="productivity">
-                <h2>Productivity</h2>
-                <!-- Productivity chart can be added here -->
+            <div class="market-share-container">
+                <h2>Market Share Price</h2>
+                <canvas id="marketShareChart"></canvas>
             </div>
         </aside>
     </div>
@@ -180,6 +181,41 @@
         });
 
         calendar.render();
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('marketShareChart').getContext('2d');
+        var marketShareChart = new Chart(ctx, {
+            type: 'bar', // Change to 'line' or 'pie' as needed
+            data: {
+                labels: ['Corn', 'Tomatoes', 'Potatoes', 'Rice'], // Example crop names
+                datasets: [{
+                    label: 'Market Share Price',
+                    data: [120, 150, 100, 180], // Example market share prices
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     });
     </script>
     <!-- FullCalendar JS -->

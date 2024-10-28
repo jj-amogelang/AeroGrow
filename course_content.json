@@ -8,17 +8,17 @@
                     "content": "Learn about Corn Cultivation",
                     "image_url": "/static/images/hydroponics.jpg",
                     "videos": [
-                        "https://www.youtube.com/embed/video1",
-                        "https://www.youtube.com/embed/video2"
+                        "https://www.youtube.com/embed/LTSVoTKmwRI",
+                        "https://www.youtube.com/embed/KpPl7pgMcY4"
                     ],
                     "articles": [
                         {
                             "title": "Corn Farming Basics",
-                            "url": "https://example.com/corn-article"
+                            "url": "https://bonnieplants.com/blogs/how-to-grow/growing-corn"
                         }
                     ],
                     "tips": [
-                        "Ensure proper irrigation.",
+                        "Also called Indian corn;. a tall cereal plant, Zea mays, cultivated in many varieties, having a jointed, solid stem and bearing the grain, seeds, or kernels on large ears.",
                         "Use crop rotation."
                     ]
                 },
@@ -28,13 +28,12 @@
                     "content": "Learn about Corn Farming",
                     "image_url": "/static/images/hydroponics.jpg",
                     "videos": [
-                        "https://www.youtube.com/embed/video1",
-                        "https://www.youtube.com/embed/video2"
+                        "https://www.youtube.com/embed/wJnKzVrZ89c"
                     ],
                     "articles": [
                         {
                             "title": "Corn Farming Basics",
-                            "url": "https://example.com/corn-article"
+                            "url": "https://eos.com/crop-management-guide/corn-growth-stages/"
                         }
                     ],
                     "tips": [
@@ -83,13 +82,12 @@
                     "sessions_completed": "8/12",
                     "content": "Learn about Tomato Farming",
                     "videos": [
-                        "https://www.youtube.com/embed/video3",
-                        "https://www.youtube.com/embed/video4"
+                        "https://www.youtube.com/embed/9w-7RoH_uic"
                     ],
                     "articles": [
                         {
                             "title": "Tomato Care Guide",
-                            "url": "https://example.com/tomato-article"
+                            "url": "https://eos.com/crop-management-guide/tomato-growth-stages/"
                         }
                     ],
                     "tips": [
