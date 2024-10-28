@@ -1,0 +1,254 @@
+{
+    "crops": {
+        "Corn": {
+            "courses": [
+                {
+                    "title": "Corn Cultivation",
+                    "sessions_completed": "10/15",
+                    "content": "Learn about Corn Cultivation",
+                    "image_url": "/static/images/hydroponics.jpg",
+                    "videos": [
+                        "https://www.youtube.com/embed/video1",
+                        "https://www.youtube.com/embed/video2"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Corn Farming Basics",
+                            "url": "https://example.com/corn-article"
+                        }
+                    ],
+                    "tips": [
+                        "Ensure proper irrigation.",
+                        "Use crop rotation."
+                    ]
+                },
+                {
+                    "title": "Growth Cycles of Corn Crops",
+                    "sessions_completed": "10/15",
+                    "content": "Learn about Corn Farming",
+                    "image_url": "/static/images/hydroponics.jpg",
+                    "videos": [
+                        "https://www.youtube.com/embed/video1",
+                        "https://www.youtube.com/embed/video2"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Corn Farming Basics",
+                            "url": "https://example.com/corn-article"
+                        }
+                    ],
+                    "tips": [
+                        "Ensure proper irrigation.",
+                        "Use crop rotation."
+                    ]
+                }
+            ]
+        },
+        "Tomatoes": {
+            "courses": [
+                {
+                    "title": "Plant Basics",
+                    "sessions_completed": "8/12",
+                    "content": "Learn about Tomato Growing",
+                    "videos": [
+                        "https://www.youtube.com/embed/video3",
+                        "https://www.youtube.com/embed/video4"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Tomato Care Guide",
+                            "url": "https://example.com/tomato-article"
+                        }
+                    ],
+                    "tips": [
+                        "Prune regularly.",
+                        "Monitor for pests."
+                    ],
+                    "alternative_methods": [
+                        {
+                            "method": "Hydroponics",
+                            "description": "Growing tomatoes in a nutrient-rich water solution without soil."
+                        },
+                        {
+                            "method": "Companion Planting",
+                            "description": "Planting tomatoes alongside basil to enhance growth and flavor."
+                        }
+                    ]
+                },
+                {
+                    "title": "Growth Cycles of Tomatoes",
+                    "sessions_completed": "8/12",
+                    "content": "Learn about Tomato Farming",
+                    "videos": [
+                        "https://www.youtube.com/embed/video3",
+                        "https://www.youtube.com/embed/video4"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Tomato Care Guide",
+                            "url": "https://example.com/tomato-article"
+                        }
+                    ],
+                    "tips": [
+                        "Prune regularly.",
+                        "Monitor for pests."
+                    ]
+                }
+            ]
+        },
+        "Potatoes": {
+            "courses": [
+                {
+                    "title": "Plant Basics",
+                    "sessions_completed": "9/12",
+                    "content": "Learn about Potato Farming",
+                    "videos": [
+                        "https://www.youtube.com/embed/video5",
+                        "https://www.youtube.com/embed/video6"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Potato Cultivation Techniques",
+                            "url": "https://example.com/potato-article"
+                        }
+                    ],
+                    "tips": [
+                        "Plant in well-drained soil.",
+                        "Use disease-resistant varieties."
+                    ],
+                    "alternative_methods": [
+                        {
+                            "method": "Raised Bed Gardening",
+                            "description": "Growing potatoes in raised beds to improve drainage and soil quality."
+                        },
+                        {
+                            "method": "Container Gardening",
+                            "description": "Using containers to grow potatoes, making it easier to manage soil and pests."
+                        }
+                    ]
+                },
+                {
+                    "title": "Growth Cycles of Potatoes",
+                    "sessions_completed": "9/12",
+                    "content": "Learn about Potato Farming",
+                    "videos": [
+                        "https://www.youtube.com/embed/video5",
+                        "https://www.youtube.com/embed/video6"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Potato Cultivation Techniques",
+                            "url": "https://example.com/potato-article"
+                        }
+                    ],
+                    "tips": [
+                        "Plant in well-drained soil.",
+                        "Use disease-resistant varieties."
+                    ]
+                }
+            ]
+        },
+        "Rice": {
+            "courses": [
+                {
+                    "title": "Rice Cultivation Methods",
+                    "sessions_completed": "7/10",
+                    "content": "Learn about Rice Cultivation",
+                    "videos": [
+                        "https://www.youtube.com/embed/video7",
+                        "https://www.youtube.com/embed/video8"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Understanding Rice Farming",
+                            "url": "https://example.com/rice-article"
+                        }
+                    ],
+                    "tips": [
+                        "Maintain proper water levels.",
+                        "Use organic fertilizers."
+                    ],
+                    "alternative_methods": [
+                        {
+                            "method": "SRI (System of Rice Intensification)",
+                            "description": "A method that increases rice yields by changing planting practices."
+                        },
+                        {
+                            "method": "Aerobic Rice Cultivation",
+                            "description": "Growing rice in non-flooded conditions to save water."
+                        }
+                    ]
+                },
+                {
+                    "title": "Growth Cycles of Rice Crops",
+                    "sessions_completed": "7/10",
+                    "content": "Learn about Rice Farming",
+                    "videos": [
+                        "https://www.youtube.com/embed/video7",
+                        "https://www.youtube.com/embed/video8"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Understanding Rice Farming",
+                            "url": "https://example.com/rice-article"
+                        }
+                    ],
+                    "tips": [
+                        "Maintain proper water levels.",
+                        "Use organic fertilizers."
+                    ]
+                }
+            ]
+        }
+    },
+    "farm_sizes": {
+        "small": {
+            "recommendations": [
+                "Focus on high-value crops.",
+                "Utilize vertical farming techniques."
+            ]
+        },
+        "medium": {
+            "recommendations": [
+                "Implement crop rotation.",
+                "Invest in irrigation systems."
+            ]
+        },
+        "large": {
+            "recommendations": [
+                "Consider mechanization for efficiency.",
+                "Diversify crop production."
+            ]
+        }
+    },
+    "locations": {
+        "Limpopo": {
+            "climate": "Warm and dry, suitable for drought-resistant crops.",
+            "recommendations": [
+                "Use mulch to retain soil moisture.",
+                "Select drought-resistant crop varieties."
+            ]
+        },
+        "Eastern Cape": {
+            "climate": "Mild with seasonal rainfall, good for a variety of crops.",
+            "recommendations": [
+                "Implement rainwater harvesting.",
+                "Rotate crops to maintain soil health."
+            ]
+        },
+        "Western Cape": {
+            "climate": "Mediterranean climate, ideal for fruits and vegetables.",
+            "recommendations": [
+                "Use drip irrigation to conserve water.",
+                "Plant cover crops to improve soil health."
+            ]
+        },
+        "KwaZulu-Natal": {
+            "climate": "Subtropical climate, suitable for a wide range of crops.",
+            "recommendations": [
+                "Monitor for pests and diseases regularly.",
+                "Utilize intercropping for better yields."
+            ]
+        }
+    }
+}

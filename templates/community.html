@@ -9,25 +9,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='community.css') }}">
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <div class="logo">AeroGrow</div>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-            <button class="continue-btn">Continue</button>
-        </nav>
-        <aside>
-            <ul>
-                <li><a href="{{ url_for('home') }}"><i class="icon">📊</i> Dashboard</a></li>
-                <li class="active"><a href="{{ url_for('community') }}"><i class="icon">🌱</i> Community</a></li>
-                <li><a href="#"><i class="icon">🤖</i> AeroGrow AI</a></li>
-                <li><a href="#"><i class="icon">🏆</i> Certifications</a></li>
-                <li><a href="#"><i class="icon">💰</i> Programs & Funding</a></li>
-                <li><a href="#"><i class="icon">⚙️</i> Settings</a></li>
-            </ul>
+    <div class="community-container">
+        <aside class="sidebar">
+            <nav>
+                <a href="{{ url_for('home') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
+                <a href=""><i class="icon">🤖</i>AeroGro AI</a>
+                <a href=""><i class="icon">🏆</i> Certifications</a>
+                <a href=""><i class="icon">💰</i>Programs and Funding</a>
+                <a href=""><i class="icon">⚙️</i>Settings</a>
+            </nav>
         </aside>
         <main class="community-main">
             <h1>Conversation</h1>

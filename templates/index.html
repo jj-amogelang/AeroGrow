@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>AeroGrow</title>
     <script>
-        const apiKey = 'ef93ffe8bf8d4e809578cc798fdfc7c4'; // Replace with your OpenCage API key
+        const apiKey = ''; // Replace with your OpenCage API key
 
         function toggleDropdown() {
             document.getElementById("languageDropdown").classList.toggle("show");
@@ -24,11 +24,11 @@
             }
         }
 
-        function openModal(serviceName) {
-            document.getElementById("modalHeading").innerText = "You picked " + serviceName;
+        function openModal(crop) {
+            document.getElementById("modalHeading").innerText = "You picked " + crop;
             document.getElementById("infoModal").style.display = "block";
             // Store the crop type in a hidden input field
-            document.getElementById("cropType").value = serviceName;
+            document.getElementById("cropType").value = crop;
         }
 
         function closeModal() {
@@ -54,7 +54,7 @@
                     if (data.results.length > 0) {
                         const city = data.results[0].components.city || data.results[0].components.town || data.results[0].components.village;
                         const country = data.results[0].components.country;
-                        document.getElementById("location").innerText = `Location: ${city}, ${country}`;
+                        document.getElementById("location").innerText = `${city}`;
                         
                         // Fetch climate data using OpenWeatherMap API
                         fetch('/get_weather', {
@@ -67,7 +67,7 @@
                         .then(response => response.json())
                         .then(weatherData => {
                             if (weatherData.temperature) {
-                                document.getElementById("weatherInfo").innerText = `Current Temperature: ${weatherData.temperature} °C`;
+                                document.getElementById("weatherInfo").innerText = `${weatherData.temperature} °C`;
                             } else {
                                 document.getElementById("weatherInfo").innerText = "Error fetching weather data.";
                             }
@@ -94,7 +94,7 @@
                                 forecastData.forEach(day => {
                                     const forecastItem = document.createElement("div");
                                     forecastItem.className = "forecast-item";
-                                    forecastItem.innerHTML = `<strong>${day.date}</strong>: ${day.temp.toFixed(1)} °C`;
+                                    forecastItem.innerHTML = `<strong>${day.date}</strong><br>${day.temp.toFixed(1)} °C`;
                                     forecastContainer.appendChild(forecastItem);
                                 });
                             } else {
@@ -155,19 +155,18 @@
                 </div>
             </div>
         </div>
-        <div class="weather">
-            <h2>Weather</h2>
-            <div class="weather-info">
-                <img src="{{ url_for('static', filename='images/weather.jpg') }}" alt="Weather Icon" class="weather-icon">
-                <p id="weatherInfo">Fetching temperature...</p> <!-- Display current temperature here -->
-                
-            </div>
-            <div class="location-info">
-                <p id="location">Fetching location...</p> <!-- Display city and country here -->
+        <div class="weather-container">
+            <div class="current-weather">
+                <h3 id="location"></h3> <!-- Display city and country here -->
+                <div class="weather-info">
+                    <h2 id="weatherInfo"></h2> <!-- Display current temperature here -->
+                </div>
+                <p class="weather-description">Fetching weather description...</p> <!-- Display weather description -->
+                <p class="high-low">H: --° | L: --°</p> <!-- High and Low temperatures -->
             </div>
             <div class="forecast">
                 <h3>5-Day Forecast</h3>
-                <div id="forecast"></div> <!-- Forecast data will be populated here -->
+                <div id="forecast" class="forecast-items"></div> <!-- Forecast data will be populated here -->
             </div>
         </div>
         
@@ -221,13 +220,13 @@
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
                 <h2 id="modalHeading">Farm Information</h2>
-                <form action="{{ url_for('recommendations') }}" method="POST">
+                <form id="farmInfoForm" action="{{ url_for('recommendations') }}" method="POST">
                     <input type="hidden" id="cropType" name="cropType" value="">
                     <label for="farmSize">Farm Size:</label>
                     <select id="farmSize" name="farmSize" required>
-                        <option value="small">Small-Scale (0.5 - 5 hectares)</option>
-                        <option value="medium">Medium-Scale (5 - 20 hectares)</option>
-                        <option value="large">Large-Scale (20 - 50 hectares)</option>
+                        <option value="small-scale">Small-Scale (0.5 - 5 hectares)</option>
+                        <option value="medium-scale">Medium-Scale (5 - 20 hectares)</option>
+                        <option value="large-scale">Large-Scale (20 - 50 hectares)</option>
                         <option value="commercial">Commercial-Scale (50+ hectares)</option>
                     </select>
                     <br>

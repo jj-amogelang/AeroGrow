@@ -6,11 +6,7 @@ body {
 }
 
 .container {
-    max-width: 1200px; /* Limit the width of the container */
-    margin: 0 auto; /* Center the container */
-    padding: 20px;
-    background-color: #fff; /* White background for the container */
-    border-radius: 10px; /* Rounded corners */
+    min-height: 100vh;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
@@ -110,7 +106,7 @@ body {
 
 .language-icon {
     width: 40px; /* Adjust icon size */
-    height: 37px; /* Adjust icon size */
+    height: 30px; /* Adjust icon size */
     cursor: pointer; /* Pointer cursor on hover */
 }
 
@@ -232,4 +228,76 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #45a049; /* Darker green on hover */
+}
+
+.weather-container {
+    text-align: center;
+    background-image: url('/static/images/sky.jpg'); /* Set the background image */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    border-radius: 10px;
+    padding: 20px;
+    color: #ffffff; /* Ensure text is readable against the background */
+}
+
+.weather-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px; /* Match the border radius */
+    z-index: 1; /* Place overlay below text */
+}
+
+.weather-container h1,
+.weather-container h2,
+.weather-container p {
+    position: relative; /* Position text above overlay */
+    z-index: 2; /* Ensure text is above overlay */
+}
+
+.current-weather {
+    margin-bottom: 20px;
+}
+
+#location {
+    font-size: 36px; /* Large font for location */
+    margin: 0;
+}
+
+#weatherInfo {
+    font-size: 48px; /* Larger font for temperature */
+    margin: 10px 0;
+}
+
+.weather-description {
+    font-size: 18px; /* Description font size */
+    margin: 5px 0;
+}
+
+.high-low {
+    font-size: 16px; /* High/Low temperature font size */
+    margin: 5px 0;
+}
+
+.forecast {
+    margin-top: 20px;
+}
+
+.forecast-items {
+    display: flex;
+    justify-content: space-between; /* Space out forecast items */
+    flex-wrap: wrap; /* Wrap items if necessary */
+}
+
+.forecast-item {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background for forecast items */
+    border-radius: 5px;
+    padding: 10px;
+    flex: 1; /* Allow items to grow */
+    margin: 5px; /* Space between items */
+    text-align: center;
 }

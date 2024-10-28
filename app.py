@@ -1,11 +1,15 @@
 from flask import Flask, render_template, request, jsonify
 import requests
-from content_database import content_database  # Import the content database
+import json
 
 app = Flask(__name__)
 
 # Your OpenWeatherMap API key
-OPENWEATHER_API_KEY = 'd2c3bebe233beec28447108d23b4661b'
+OPENWEATHER_API_KEY = ''
+
+# Load course content from JSON file
+with open('course_content.json') as f:
+    course_content = json.load(f)
 
 @app.route('/')
 def home():
@@ -22,24 +26,11 @@ def recommendations():
     farm_size = request.form.get('farmSize')  # Farm size as a string
     farm_location = request.form.get('farmLocation')  # Farm location as a string
 
-    # Generate recommendations based on crop type, farm size, and location
-    recommendations, videos = get_relevant_content(crop_type, farm_size, farm_location)
+    # Retrieve courses and recommendations based on user selections
+    courses = course_content['crops'].get(crop_type, {}).get('courses', [])
+    recommendations = course_content['farm_sizes'].get(farm_size, {}).get('recommendations', [])
 
-    # Render the dashboard with recommendations and videos
-    return render_template('dashboard.html', recommendations=recommendations, videos=videos)
-
-def get_relevant_content(crop_type, farm_size, farm_location):
-    # Retrieve content based on crop type, location, and size
-    relevant_recommendations = []
-    relevant_videos = []
-    
-    if crop_type in content_database:
-        if farm_location in content_database[crop_type]:
-            size_data = content_database[crop_type][farm_location].get(farm_size, {})
-            relevant_recommendations.extend(size_data.get("recommendations", []))
-            relevant_videos.extend(size_data.get("videos", []))
-
-    return relevant_recommendations, relevant_videos
+    return render_template('dashboard.html', cropType=crop_type, farmSize=farm_size, farmLocation=farm_location, courses=courses, recommendations=recommendations)
 
 @app.route('/get_weather', methods=['POST'])
 def get_weather():
@@ -94,6 +85,27 @@ def get_forecast():
 @app.route('/community')
 def community():
     return render_template('community.html')  # Ensure you have a community.html template
+
+@app.route('/dashboard', methods=['GET'])
+def dashboard():
+    crop_type = request.args.get('cropType')
+    farm_size = request.args.get('farmSize')
+    farm_location = request.args.get('farmLocation')
+
+    # Retrieve courses based on user selections
+    courses = course_content['crops'].get(crop_type, {}).get('courses', [])
+    
+    # Retrieve recommendations based on farm size and location
+    farm_size_recommendations = course_content['farm_sizes'].get(farm_size, {}).get('recommendations', [])
+    location_recommendations = course_content['locations'].get(farm_location, {}).get('recommendations', [])
+
+    return render_template('dashboard.html', 
+                           cropType=crop_type, 
+                           farmSize=farm_size, 
+                           farmLocation=farm_location, 
+                           courses=courses, 
+                           farm_size_recommendations=farm_size_recommendations, 
+                           location_recommendations=location_recommendations)
 
 if __name__ == '__main__':
     app.run(debug=True)

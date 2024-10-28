@@ -3,72 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroGrow - Home</title>
+    <title>AeroGrow - Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <nav>
-            <div class="logo">AeroGrow</div>
-            <ul class="nav-links">
-                <li class="active"><a href="{{ url_for('home') }}">HOME</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-            <button class="continue-btn">Continue</button>
-        </nav>
-        <aside>
-            <ul>
-                <li class="active"><a href="{{ url_for('home') }}"><i class="icon">📊</i> Dashboard</a></li>
-                <li><a href="{{ url_for('community') }}"><i class="icon">🌱</i> Community</a></li>
-                <li><i class="icon">🤖</i> AeroGrow AI</li>
-                <li><a href="#"><i class="icon">🏆</i> Certifications</a></li>
-                <li><a href="#"><i class="icon">💰</i> Programs & Funding</a></li>
-                <li><a href="#"><i class="icon">⚙️</i> Settings</a></li>
-            </ul>
+        <aside class="sidebar">
+            <nav>
+                <a href="{{ url_for('home') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
+                <a href=""><i class="icon">🤖</i>AeroGro AI</a>
+                <a href=""><i class="icon">🏆</i> Certifications</a>
+                <a href=""><i class="icon">💰</i>Programs and Funding</a>
+                <a href=""><i class="icon">⚙️</i>Settings</a>
+            </nav>
         </aside>
+        <main class="main-content">
+            <section class="intro-section">
+                <h2>Read before you start</h2>
+                <p>Hello my student! 👋 Economics isn't just a subject - it's the lens through which we view society. From micro to macroeconomics, I'll help you discover the economic phenomena in my comprehensive courses. First of all, let me tell you a little about myself and the most important thing - how to get started?</p>
+                
+                <div class="video-container">
+                    <div class="video-thumbnail">
+                        <img src="/static/images/teaching.png" alt="Video Thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <h3>Part 1: How to get started</h3>
+                </div>
 
-        <main>
-            <h2>Learning Path</h2>
-            <div class="learning-grid">
-                <div class="learning-item">
-                    <h3>Plant Basics</h3>
-                    <p>Progress: 40%</p>
-                </div>
-                <div class="learning-item">
-                    <h3>Nutrient Mix</h3>
-                    <p>Progress: 55%</p>
-                </div>
-                <div class="learning-item">
-                    <h3>Lighting Tips</h3>
-                    <p>Progress: 25%</p>
-                </div>
-                <div class="learning-item">
-                    <h3>Water System</h3>
-                    <p>Progress: 70%</p>
-                </div>
-                <div class="learning-item">
-                    <h3>Growth Cycle</h3>
-                    <p>Progress: 85%</p>
-                </div>
-                <div class="learning-item">
-                    <h3>Troubleshooting</h3>
-                    <p>Progress: 15%</p>
-                </div>
+                <p>I hope you enjoyed your first introductory video and are ready to dive in. Are you? Let’s see what’s next:</p>
+                <ul>
+                    <li>During the first week of our course, we will have a sort of introduction to <strong>Business Management as a whole</strong>.</li>
+                    <li>Then we'll move seamlessly to <strong>Foundations of Company Management</strong>. Important thing for our further study.</li>
+                    <li>After that - exciting things await us: we will run an <strong>Implementing Effective Management</strong> lesson with a guest.</li>
+                </ul>
+            </section>
+            <div class="header">
+                <h1>Learning Paths</h1>
             </div>
-            <div class="community-cta">
-                <h2>Time to Join the Community!</h2>
-                <p>Connect with fellow enthusiasts and grow your skills together.</p>
-                <button class="community-btn">Go to Community</button>
+            <div class="my-courses">
+                {% for course in courses %}
+                    <div class="course-card" onclick="toggleContent(this)">
+                        <h3>{{ course.title }}</h3>
+                        <p>Sessions completed: {{ course.sessions_completed }}</p>
+                        <div class="additional-content" style="display: none;">
+                            <h4>{{ course.content }}</h4>
+                            <div class="video-container">
+                                <h5>YouTube Videos</h5>
+                                {% for video in course.videos %}
+                                    <iframe src="{{ video }}" frameborder="0" allowfullscreen></iframe>
+                                {% endfor %}
+                            </div>
+                            <div class="article">
+                                <h5>Recommended Articles</h5>
+                                {% for article in course.articles %}
+                                    <p><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></p>
+                                {% endfor %}
+                            </div>
+                            <div class="tips">
+                                <h5>Tips</h5>
+                                <ul>
+                                    {% for tip in course.tips %}
+                                        <li>{{ tip }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h2>Farm Size Recommendations</h2>
+            <div class="recommendations-container">
+                <ul>
+                    {% for recommendation in farm_size_recommendations %}
+                        <li>{{ recommendation }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <h2>Location Recommendations</h2>
+            <div class="recommendations-container">
+                <ul>
+                    {% for recommendation in location_recommendations %}
+                        <li>{{ recommendation }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <h2>Alternative Farming Methods</h2>
+            <div class="recommendations-container">
+                <div class="course-card">
+                    <img src="/static/images/hydroponics.jpg" alt="Course Image" class="course-image">
+                    <div class="course-info">
+                        <span class="level beginner">Hydroponics</span>
+                        <h3>Three-month Course to Learn the Basics of Python and Start Coding.</h3>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="/static/images/permaculture.jpg" alt="Course Image" class="course-image">
+                    <div class="course-info">
+                        <span class="level beginner">Permaculture</span>
+                        <h3>Three-month Course to Learn the Basics of Python and Start Coding.</h3>
+                    </div>
+                </div>
             </div>
         </main>
-        <footer>
-            <div class="user-profile">
-                <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="User Avatar">
-                <span>Amanda</span>
-                <a href="#">View profile</a>
+        <aside class="right-sidebar">
+            <div class="header">
+                <div class="user-info">
+                    <span>Friday, April 5, 2024</span>
+                    <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="User Avatar" style="width: 40px; border-radius: 50%;">
+                </div>
             </div>
-        </footer>
+            <div class="calendar">
+                <h2>Calendar</h2>
+                <!-- Calendar component can be added here -->
+            </div>
+            <div class="overall-info">
+                <h2>Overall Information</h2>
+                <p>Score: 210</p>
+                <p>Completed Course: 34h</p>
+                <p>Total Students: 17</p>
+                <p>Total Hours: 11</p>
+            </div>
+            <div class="productivity">
+                <h2>Productivity</h2>
+                <!-- Productivity chart can be added here -->
+            </div>
+        </aside>
     </div>
+    <script>
+    function toggleContent(card) {
+        const additionalContent = card.querySelector('.additional-content');
+        if (additionalContent.style.display === 'none' || additionalContent.style.display === '') {
+            additionalContent.style.display = 'block'; // Show content
+        } else {
+            additionalContent.style.display = 'none'; // Hide content
+        }
+    }
+    </script>
 </body>
+</html>
