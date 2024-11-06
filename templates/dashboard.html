@@ -3,70 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroGrow - Home</title>
+    <title>AeroGrow - Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- FullCalendar Dependencies -->
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.11/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.11/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.11/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.11/index.global.min.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.11/main.min.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">
+            AeroGrow
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact Us</a></li>
+        </ul>
+    </nav>
     <div class="container">
-        <nav>
-            <div class="logo">AeroGrow</div>
-            <ul class="nav-links">
-                <li class="active"><a href="{{ url_for('home') }}">HOME</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-            <button class="continue-btn">Continue</button>
-        </nav>
-        <aside>
-            <ul>
-                <li class="active"><a href="{{ url_for('recommendations') }}"><i class="icon">📊</i> Dashboard</a></li>
-                <li><a href="{{ url_for('community') }}"><i class="icon">🌱</i> Community</a></li>
-                <li><i class="icon">🤖</i> AeroGrow AI</li>
-            </ul>
+        <aside class="sidebar">
+            <nav>
+                <a href="{{ url_for('recommendations') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('learning_path', cropType=cropType, farmSize=farmSize, farmLocation=farmLocation) }}"><i class="icon">📚</i>Learning Path</a>
+                <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
+                <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
+                <a href=""><i class="icon">🤖</i>AeroGro AI</a>
+                <a href="{{ url_for('generate_certificate') }}"><i class="icon">🏆</i>Certifications</a>
+                <a href=""><i class="icon">💰</i>Programs and Funding</a>
+                <a href=""><i class="icon">⚙️</i>Settings</a>
+            </nav>
         </aside>
-
-        <main>
-            <h1>Your Farming Recommendations</h1>
-            <div class="recommendations-container">
-                {% for recommendation in recommendations %}
-                    <div class="recommendation-card">
-                        <h3>Recommendation {{ loop.index }}</h3>
-                        <p>{{ recommendation }}</p>
+        <main class="main-content">
+            <section class="welcome-dashboard">
+                <div class="welcome-card">
+                    <div class="welcome-header">
+                        <div class="welcome-icon">👋</div>
+                        <h1>Welcome to Your Personalized Dashboard!</h1>
                     </div>
-                {% endfor %}
-            </div>
-            <a href="{{ url_for('home') }}" class="main-button">Go Back</a>
-
-            <h2>Learning Path</h2>
-            <div class="learning-path">
-                {% if recommendations %}
-                    <h3>Relevant Videos</h3>
-                    <div class="video-container">
-                        {% for video in recommendations %}
-                            <div class="video-card">
-                                <iframe width="560" height="315" src="{{ video }}" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        {% endfor %}
+                    
+                    <div class="farm-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">🌾</span>
+                            <span class="detail-label">Your Crop:</span>
+                            <span class="detail-value">{{ crop_type }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📏</span>
+                            <span class="detail-label">Farm Size:</span>
+                            <span class="detail-value">{{ farm_size }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span class="detail-label">Location:</span>
+                            <span class="detail-value">{{ farm_location }}</span>
+                        </div>
                     </div>
-                {% else %}
-                    <p>No relevant videos found for your selections.</p>
-                {% endif %}
-            </div>
-            <div class="community-cta">
-                <h2>Time to Join the Community!</h2>
-                <p>Connect with fellow enthusiasts and grow your skills together.</p>
-                <a href="{{ url_for('community') }}" class="community-btn">Go to Community</a>
+
+                    {% if location_advice and size_tip %}
+                    <div class="advice-section">
+                        <div class="advice-card location-advice">
+                            <h3>🎯 Location-Specific Advice</h3>
+                            <p>{{ location_advice }}</p>
+                        </div>
+                        
+                        <div class="advice-card farming-tip">
+                            <h3>💡 Farming Tip</h3>
+                            <p>{{ size_tip }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="app-benefits">
+                        <h3>🌟 What You'll Get From AeroGrow</h3>
+                        <ul>
+                            <li>Personalized learning paths for {{ crop_type }} farming</li>
+                            <li>Weather updates and planting calendars for {{ farm_location }}</li>
+                            <li>Best practices for {{ farm_size }} farming</li>
+                            <li>Community support from local farmers</li>
+                            <li>Regular tips and alerts based on your specific context</li>
+                        </ul>
+                    </div>
+
+                    <div class="welcome-actions">
+                        <a href="{{ url_for('learning_path', cropType=crop_type, farmSize=farm_size, farmLocation=farm_location) }}" class="start-learning-btn">
+                            Start Your Learning Path
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <div style="display: none;">
+                <p>Debug Info:</p>
+                <p>Crop Type: {{ crop_type }}</p>
+                <p>Farm Size: {{ farm_size }}</p>
+                <p>Location: {{ farm_location }}</p>
+                <p>Location Advice: {{ location_advice }}</p>
+                <p>Size Tip: {{ size_tip }}</p>
             </div>
         </main>
-        
-        <footer>
-            <div class="user-profile">
-                <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="User Avatar">
-                <span>Amanda</span>
-                <a href="#">View profile</a>
+        <aside class="right-sidebar">
+            <div class="header">
+                <div class="user-info">
+                    <span>Friday, April 5, 2024</span>
+                    <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="User Avatar" style="width: 40px; border-radius: 50%;">
+                </div>
             </div>
-        </footer>
+            <div id="calendar-container">
+                <div class="calendar-header">
+                    <h2>Calendar</h2>
+                    <div class="calendar-actions">
+                        <button id="addEventBtn" class="calendar-btn">+ Add Event</button>
+                    </div>
+                </div>
+                <div id="calendar"></div>
+                <div class="upcoming-events">
+                    <h3>Upcoming Events</h3>
+                    <div id="eventsList"></div>
+                </div>
+            </div>
+            <div class="overall-info">
+                <h2>Overall Information</h2>
+                <p>Score: </p>
+                <p>Completed Course: </p>
+                <p>Total Students: </p>
+                <p>Total Hours: 11</p>
+            </div>
+            <div class="market-share-container">
+                <h2>Market Share Price</h2>
+                <canvas id="marketShareChart"></canvas>
+            </div>
+        </aside>
     </div>
+    <div id="eventModal" class="event-modal">
+        <div class="event-modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Add Farming Event</h3>
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title</label>
+                    <input type="text" id="eventTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type</label>
+                    <select id="eventType" required>
+                        <option value="planting">🌱 Planting</option>
+                        <option value="harvest">🌾 Harvest</option>
+                        <option value="maintenance">🔧 Maintenance</option>
+                        <option value="other">📝 Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Date</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <button type="submit" class="submit-btn">Save Event</button>
+            </form>
+        </div>
+    </div>
+    <script>
+    function toggleContent(card) {
+        const additionalContent = card.querySelector('.additional-content');
+        const allContent = document.querySelectorAll('.additional-content');
+        
+        // Close all other open cards
+        allContent.forEach(content => {
+            if (content !== additionalContent && content.style.display === 'block') {
+                content.style.display = 'none';
+            }
+        });
+
+        // Toggle clicked card
+        if (additionalContent.style.display === 'none' || additionalContent.style.display === '') {
+            additionalContent.style.display = 'block';
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            additionalContent.style.display = 'none';
+        }
+    }
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var eventsList = document.getElementById('eventsList');
+        var modal = document.getElementById('eventModal');
+        var addEventBtn = document.getElementById('addEventBtn');
+        var closeBtn = document.getElementsByClassName('close-modal')[0];
+
+        // Initialize calendar
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'today'
+            },
+            height: 'auto',
+            events: [
+                {
+                    title: '🌱 Plant Corn',
+                    start: '2024-04-10',
+                    type: 'planting'
+                },
+                {
+                    title: '🌾 Harvest Wheat',
+                    start: '2024-04-15',
+                    type: 'harvest'
+                },
+                {
+                    title: '🔧 Check Irrigation',
+                    start: '2024-04-20',
+                    type: 'maintenance'
+                }
+            ],
+            eventClick: function(info) {
+                if (confirm('Delete this event?')) {
+                    info.event.remove();
+                    updateUpcomingEvents();
+                }
+            }
+        });
+
+        calendar.render();
+
+        // Update upcoming events list
+        function updateUpcomingEvents() {
+            eventsList.innerHTML = '';
+            var events = calendar.getEvents();
+            var today = new Date();
+            
+            events.sort((a, b) => a.start - b.start)
+                  .filter(event => event.start >= today)
+                  .slice(0, 5)
+                  .forEach(event => {
+                      var eventEl = document.createElement('div');
+                      eventEl.className = 'event-item';
+                      eventEl.innerHTML = `
+                          <div class="event-info">
+                              <div>${event.title}</div>
+                              <div class="event-date">${event.start.toLocaleDateString()}</div>
+                          </div>
+                      `;
+                      eventsList.appendChild(eventEl);
+                  });
+        }
+
+        // Event form handling
+        addEventBtn.onclick = function() {
+            modal.style.display = "block";
+            document.getElementById('eventDate').valueAsDate = new Date();
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.getElementById('eventForm').onsubmit = function(e) {
+            e.preventDefault();
+            var title = document.getElementById('eventTitle').value;
+            var type = document.getElementById('eventType').value;
+            var date = document.getElementById('eventDate').value;
+            
+            var icon = {
+                'planting': '🌱',
+                'harvest': '🌾',
+                'maintenance': '🔧',
+                'other': '📝'
+            }[type];
+
+            calendar.addEvent({
+                title: `${icon} ${title}`,
+                start: date,
+                type: type
+            });
+
+            updateUpcomingEvents();
+            modal.style.display = "none";
+            this.reset();
+        }
+
+        // Initial upcoming events
+        updateUpcomingEvents();
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('marketShareChart').getContext('2d');
+        var marketShareChart = new Chart(ctx, {
+            type: 'bar', // Change to 'line' or 'pie' as needed
+            data: {
+                labels: ['Corn', 'Tomatoes', 'Potatoes', 'Rice'], // Example crop names
+                datasets: [{
+                    label: 'Market Share Price',
+                    data: [120, 150, 100, 180], // Example market share prices
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get current page path
+        const currentPath = window.location.pathname;
+        
+        // Find all sidebar links
+        const sidebarLinks = document.querySelectorAll('.sidebar nav a');
+        
+        // Remove active class from all links
+        sidebarLinks.forEach(link => {
+            link.classList.remove('active');
+            
+            // Add active class if href matches current path
+            if (link.getAttribute('href').includes(currentPath)) {
+                link.classList.add('active');
+            }
+        });
+    });
+    </script>
 </body>
 </html>
