@@ -152,3 +152,40 @@ body {
     color: #4CAF50; /* Green color on hover */
 }
 
+.sidebar nav a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    margin: 4px 0;
+    opacity: 1 !important; /* Force opacity to always be 1 */
+    visibility: visible !important; /* Force visibility to always be visible */
+}
+
+.sidebar nav a:hover {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.sidebar nav a.active {
+    background: #4CAF50;
+    color: white;
+}
+
+.sidebar nav a i {
+    margin-right: 12px;
+    font-size: 1.2em;
+}
+
+/* Override any other styles that might affect visibility */
+.sidebar nav a,
+.sidebar nav a:hover,
+.sidebar nav a:active,
+.sidebar nav a:focus {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+

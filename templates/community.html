@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeroGrow - Community</title>
-    <!--<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }} -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='community.css') }}">
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">
-            AeroGrow
-        </div>
+        <div class="logo">AeroGrow</div>
         <ul class="nav-links">
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="">News</a></li>
@@ -22,17 +19,21 @@
     <div class="community-container">
         <aside class="sidebar">
             <nav>
-                <a href="{{ url_for('home') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('recommendations') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('learning_path', cropType=cropType, farmSize=farmSize, farmLocation=farmLocation) }}"><i class="icon">📚</i>Learning Path</a>
                 <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
-                <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
-                <a href=""><i class="icon">🤖</i>AeroGro AI</a>
-                <a href=""><i class="icon">🏆</i> Certifications</a>
+                <a href="{{ url_for('community') }}" class="active"><i class="icon">👥</i>Community</a>
+                <a href="{{ url_for('aerogrow_ai') }}"><i class="icon">🤖</i>AeroGro AI</a>
+                <a href="{{ url_for('generate_certificate') }}"><i class="icon">🏆</i>Certifications</a>
                 <a href=""><i class="icon">💰</i>Programs and Funding</a>
                 <a href=""><i class="icon">⚙️</i>Settings</a>
             </nav>
         </aside>
         <main class="community-main">
             <h1>Conversation</h1>
+            <p class="community-description">
+                Welcome to the AeroGrow Community! This is a space for members to connect, share experiences, and discuss all things related to farming. Whether you have questions, tips, or just want to chat about your latest harvest, you’re in the right place!
+            </p>
             <div class="chat-container">
                 <div class="chat-messages">
                     <div class="message user-message">
@@ -47,7 +48,7 @@
                     </div>
                     <div class="message community-message">
                         <div class="message-content">
-                            <p>We are great? How is the produce looking?</p>
+                            <p>We are great! How is the produce looking?</p>
                         </div>
                     </div>
                     <div class="message user-message">
@@ -60,7 +61,6 @@
                             <p>That is great. Happy to hear the tips worked.</p>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="chat-input">
                     <input type="text" placeholder="Type your message...">
@@ -69,5 +69,18 @@
             </div>
         </main>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPath = window.location.pathname;
+        const sidebarLinks = document.querySelectorAll('.sidebar nav a');
+        
+        sidebarLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(currentPath)) {
+                link.classList.add('active');
+            }
+        });
+    });
+    </script>
 </body>
 </html>

@@ -1,304 +1,18 @@
+/* Base Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     background-color: #f9f9f9;
     margin: 0;
     padding: 20px;
+    color: #333;
+    line-height: 1.6;
 }
 
 .container {
     min-height: 100vh;
-}
-
-.weather {
-    text-align: center;
-}
-
-.hero-image {
-    margin: 20px 0; /* Space above and below the hero image */
-    text-align: center; /* Center the image */
-}
-
-.hero-image img {
-    width: 100%; /* Make the image responsive */
-    max-width: 2000px; /* Set a maximum width */
-    height: 400px; /* Set a specific height */
-    object-fit: cover; /* Maintain aspect ratio and cover the area */
-    border-radius: 10px; /* Optional: rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
-}
-
-.main-button {
-    display: block; /* Center the button */
-    margin: 20px auto; /* Center the button */
-    padding: 10px 20px;
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    border: none;
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer;
-    font-size: 16px; /* Font size */
-    transition: background-color 0.3s; /* Smooth transition */
-}
-
-.main-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-}
-
-.services {
-    margin-top: 20px; /* Space above the services section */
-}
-
-.service-icons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns */
-    gap: 20px; /* Space between buttons */
-    margin-top: 20px;
-}
-
-.icon {
-    background-color: #e0e0e0;
-    border-radius: 10px; /* Rounded corners */
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s; /* Add shadow effect */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.icon img {
-    width: 100px; /* Adjust image size */
-    height: 100px; /* Adjust image size */
-    object-fit: cover; /* Maintain aspect ratio and cover the area */
-    border-radius: 10px; /* Optional: rounded corners */
-}
-
-.icon p {
-    margin-top: 10px;
-    font-weight: bold; /* Make text bold */
-}
-
-.icon:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-}
-
-.weather-info {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-}
-
-.weather-icon {
-    width: 130px; /* Adjust icon size */
-    height: 100px; /* Adjust icon size */
-    margin-right: 10px; /* Space between icon and text */
-}
-
-.header {
-    display: flex;
-    justify-content: space-between; /* Space between title and dropdown */
-    align-items: center; /* Center items vertically */
-}
-
-.language-dropdown {
-    position: relative; /* Position relative for dropdown */
-}
-
-.language-icon {
-    width: 40px; /* Adjust icon size */
-    height: 30px; /* Adjust icon size */
-    cursor: pointer; /* Pointer cursor on hover */
-}
-
-.dropdown-content {
-    display: none; /* Hidden by default */
-    position: absolute; /* Position it below the icon */
-    right: 0; /* Align to the right */
-    background-color: #f9f9f9; /* Background color */
-    min-width: 100px; /* Minimum width */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow */
-    z-index: 1; /* Ensure it appears above other elements */
-}
-
-.dropdown-content a {
-    color: black; /* Text color */
-    padding: 10px; /* Padding */
-    text-decoration: none; /* No underline */
-    display: block; /* Block display */
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1; /* Background on hover */
-}
-
-.show {
-    display: block; /* Show the dropdown */
-}
-
-/* Modal styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.7); /* Dark background with opacity */
-}
-
-.modal-content {
-    background-color: #ffffff; /* White background */
-    margin: 10% auto; /* Centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 90%; /* Full width */
-    max-width: 500px; /* Maximum width */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    transition: transform 0.3s ease; /* Smooth transition */
-    animation: slideIn 0.5s; /* Animation for modal */
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.close {
-    color: #ff4d4d; /* Red color for close button */
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    transition: color 0.3s; /* Smooth transition */
-}
-
-.close:hover,
-.close:focus {
-    color: #ff1a1a; /* Darker red on hover */
-    text-decoration: none;
-    cursor: pointer;
-}
-
-h2 {
-    color: #333; /* Darker text color for heading */
-    margin-bottom: 20px; /* Space below heading */
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-top: 10px;
-    font-weight: bold; /* Bold labels */
-    color: #555; /* Darker color for labels */
-}
-
-select {
-    margin-bottom: 20px; /* Space below select */
-    padding: 10px; /* Padding for select */
-    border: 1px solid #ccc; /* Border for select */
-    border-radius: 5px; /* Rounded corners */
-    transition: border-color 0.3s; /* Smooth transition */
-}
-
-select:focus {
-    border-color: #4CAF50; /* Green border on focus */
-    outline: none; /* Remove outline */
-}
-
-button[type="submit"] {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    padding: 10px;
-    border: none;
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition */
-}
-
-button[type="submit"]:hover {
-    background-color: #45a049; /* Darker green on hover */
-}
-
-.weather-container {
-    text-align: center;
-    background-image: url('/static/images/sky.jpg'); /* Set the background image */
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    border-radius: 10px;
-    padding: 20px;
-    color: #ffffff; /* Ensure text is readable against the background */
-}
-
-.weather-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 10px; /* Match the border radius */
-    z-index: 1; /* Place overlay below text */
-}
-
-.weather-container h1,
-.weather-container h2,
-.weather-container p {
-    position: relative; /* Position text above overlay */
-    z-index: 2; /* Ensure text is above overlay */
-}
-
-.current-weather {
-    margin-bottom: 20px;
-}
-
-#location {
-    font-size: 36px; /* Large font for location */
-    margin: 0;
-}
-
-#weatherInfo {
-    font-size: 48px; /* Larger font for temperature */
-    margin: 10px 0;
-}
-
-.weather-description {
-    font-size: 18px; /* Description font size */
-    margin: 5px 0;
-}
-
-.high-low {
-    font-size: 16px; /* High/Low temperature font size */
-    margin: 5px 0;
-}
-
-.forecast {
-    margin-top: 20px;
-}
-
-.forecast-items {
-    display: flex;
-    justify-content: space-between; /* Space out forecast items */
-    flex-wrap: wrap; /* Wrap items if necessary */
-}
-
-.forecast-item {
-    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background for forecast items */
-    border-radius: 5px;
-    padding: 10px;
-    flex: 1; /* Allow items to grow */
-    margin: 5px; /* Space between items */
-    text-align: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Navbar Styles */
@@ -306,85 +20,294 @@ button[type="submit"]:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff; /* White background */
-    padding: 10px 20px; /* Padding for the navbar */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
     font-weight: bold;
     font-size: 30px;
+    color: #4CAF50;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .nav-links {
-    list-style: none; /* Remove bullet points */
-    display: flex; /* Flexbox for horizontal layout */
-    gap: 20px; /* Space between links */
-    margin: 15px auto;
-}
-
-.nav-links li {
-    display: inline; /* Inline display for list items */
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-    text-decoration: none; /* Remove underline */
-    color: #333; /* Dark text color */
-    font-weight: bold; /* Bold text */
-    transition: color 0.3s; /* Smooth color transition */
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #4CAF50; /* Green color on hover */
+    color: #4CAF50;
+    background-color: rgba(74, 175, 80, 0.1);
 }
 
-/* Welcome Section Styles */
-.welcome-section {
-    text-align: center; /* Center the text */
-    margin: 40px 0; /* Margin for spacing */
-    padding: 20px; /* Padding for the section */
+/* Weather Section */
+.weather-container {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    border-radius: 15px;
+    padding: 30px;
+    color: white;
+    margin: 30px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.welcome-section h1 {
-    font-size: 2.5em; /* Large font size for the heading */
-    color: #4CAF50; /* Green color for the heading */
-    margin-bottom: 10px; /* Space below the heading */
+.current-weather {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.tagline {
-    font-size: 1.2em; /* Slightly smaller font size for the tagline */
-    color: #555; /* Dark gray color for the tagline */
-    font-style: italic; /* Italic style for emphasis */
+#location {
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: 500;
 }
 
-/* Instruction Section Styles */
-.instruction-section {
-    text-align: center; /* Center the text */
-    margin: 40px 0; /* Margin for spacing */
-    padding: 20px; /* Padding for the section */
-    background-color: #f0f8ff; /* Light blue background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+#weatherInfo {
+    font-size: 3.5em;
+    margin: 15px 0;
+    font-weight: 300;
 }
 
-.instruction-section h2 {
-    font-size: 2em; /* Large font size for the heading */
-    color: #333; /* Dark color for the heading */
-    margin-bottom: 10px; /* Space below the heading */
+.forecast-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.instruction-section p {
-    font-size: 1.2em; /* Slightly larger font size for the paragraph */
-    color: #555; /* Dark gray color for the paragraph */
+.forecast-item {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    backdrop-filter: blur(5px);
 }
 
-.instruction-section ol {
-    text-align: left; /* Align list items to the left */
-    display: inline-block; /* Center the list */
-    margin: 0 auto; /* Center the list */
-    padding: 0; /* Remove default padding */
+/* Hero Section */
+.hero-image {
+    position: relative;
+    height: 500px;
+    margin: 40px 0;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.instruction-section li {
-    margin: 10px 0; /* Space between list items */
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Services Grid */
+.service-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.icon {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.icon img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    margin: 5vh auto;
+    padding: 35px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: translateY(-30px);
+    opacity: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 30px;
+    height: 30px;
+    background: #ff4d4d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close:hover {
+    background: #ff3333;
+    transform: rotate(90deg);
+}
+
+.modal-content h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+/* Form Styles inside Modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-content .form-group {
+    position: relative;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-content select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #333;
+    background-color: white;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+.modal-content select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(74, 175, 80, 0.2);
+    outline: none;
+}
+
+.modal-content button[type="submit"] {
+    background: linear-gradient(145deg, #4CAF50, #45a049);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.modal-content button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 175, 80, 0.3);
+}
+
+.modal-content button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .nav-links {
+        margin-top: 15px;
+        gap: 15px;
+    }
+
+    .hero-image {
+        height: 300px;
+    }
+
+    .service-icons {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .modal-content {
+        margin: 10% auto;
+        padding: 20px;
+    }
 }

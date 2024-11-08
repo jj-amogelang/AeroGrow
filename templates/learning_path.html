@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Path - AeroGrow</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">AeroGrow</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <a href="{{ url_for('recommendations') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('learning_path', cropType=cropType, farmSize=farmSize, farmLocation=farmLocation) }}"><i class="icon">📚</i>Learning Path</a>
+                <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
+                <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
+                <a href="{{ url_for('aerogrow_ai') }}"><i class="icon">🤖</i>AeroGro AI</a>
+                <a href="{{ url_for('generate_certificate') }}"><i class="icon">🏆</i>Certifications</a>
+                <a href=""><i class="icon">💰</i>Programs and Funding</a>
+                <a href=""><i class="icon">⚙️</i>Settings</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <section class="intro-section">
+                <div class="intro-header">
+                    <h1>Welcome to Your Learning Journey</h1>
+                    <p class="subtitle">Master {{ crop_type }} farming with our comprehensive curriculum</p>
+                </div>
+                <div class="intro-grid">
+                    <div class="intro-card featured">
+                        <div class="video-container">
+                            <div class="video-thumbnail">
+                                <img src="/static/images/teaching.png" alt="Video Thumbnail">
+                                <div class="play-button">▶</div>
+                            </div>
+                            <h3>Getting Started with {{ crop_type }} Farming</h3>
+                            <p>A comprehensive introduction to your farming journey</p>
+                        </div>
+                    </div>
+                    <div class="intro-card stats">
+                        <h3>Your Learning Stats</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item"><span class="stat-icon">📚</span><span class="stat-value">4</span><span class="stat-label">Courses</span></div>
+                            <div class="stat-item"><span class="stat-icon">⏱️</span><span class="stat-value">12</span><span class="stat-label">Hours</span></div>
+                            <div class="stat-item"><span class="stat-icon">🎯</span><span class="stat-value">24</span><span class="stat-label">Lessons</span></div>
+                            <div class="stat-item"><span class="stat-icon">🏆</span><span class="stat-value">3</span><span class="stat-label">Certificates</span></div>
+                        </div>
+                    </div>
+                    <div class="intro-card path">
+                        <h3>Your Learning Path</h3>
+                        <div class="path-steps">
+                            <div class="path-step"><div class="step-marker completed">1</div><div class="step-content"><h4>Fundamentals</h4><p>Basic farming concepts and principles</p></div></div>
+                            <div class="path-step"><div class="step-marker active">2</div><div class="step-content"><h4>Practical Skills</h4><p>Hands-on farming techniques</p></div></div>
+                            <div class="path-step"><div class="step-marker">3</div><div class="step-content"><h4>Advanced Methods</h4><p>Modern farming technologies</p></div></div>
+                        </div>
+                    </div>
+                    <div class="intro-card key-points">
+                        <h3>What You'll Learn</h3>
+                        <ul class="points-list">
+                            <li><span class="point-icon">🌱</span>Complete guide to {{ crop_type }} cultivation</li>
+                            <li><span class="point-icon">🌍</span>Location-specific farming techniques for {{ farm_location }}</li>
+                            <li><span class="point-icon">📏</span>Best practices for {{ farm_size }} farming</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <div class="header"><h1>Learning Paths</h1></div>
+            <div class="my-courses">
+                {% for course in courses %}
+                    <div class="course-card" onclick="toggleContent(this)">
+                        <div class="progress-indicator">{{ course.progress }}%</div>
+                        <h3>{{ course.title }}</h3>
+                        <p>Sessions completed: {{ course.sessions_completed }}/{{ course.total_sessions }}</p>
+                        <div class="additional-content" style="display: none;">
+                            <h4>{{ course.content }}</h4>
+                            <div class="video-container">
+                                <h5>Course Videos</h5>
+                                {% for video in course.videos %}
+                                    <iframe src="{{ video }}" title="Course video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                {% endfor %}
+                            </div>
+                            <div class="article">
+                                <h5>Recommended Reading</h5>
+                                {% for article in course.articles %}
+                                    <p><a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">{{ article.title }}</a></p>
+                                {% endfor %}
+                            </div>
+                            <div class="tips">
+                                <h5>Key Takeaways</h5>
+                                <ul>{% for tip in course.tips %}<li>📌 {{ tip }}</li>{% endfor %}</ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <section class="alternative-methods">
+                <div class="section-header">
+                    <h2>Alternative Farming Methods</h2>
+                    <p>Explore modern and sustainable farming techniques</p>
+                </div>
+                <div class="methods-grid">
+                    <div class="method-card">
+                        <div class="method-image">
+                            <img src="/static/images/hydroponics.jpg" alt="Hydroponics Farming">
+                            <div class="method-badge">Modern Farming</div>
+                        </div>
+                        <div class="method-content">
+                            <h3>Hydroponics</h3>
+                            <p class="method-description">Grow plants using water-based nutrient solutions without soil. Perfect for controlled environments and urban farming.</p>
+                            <div class="method-features">
+                                <div class="feature"><span class="feature-icon">💧</span><span>Water Efficient</span></div>
+                                <div class="feature"><span class="feature-icon">🏙️</span><span>Space Saving</span></div>
+                                <div class="feature"><span class="feature-icon">🌿</span><span>Year-round Growth</span></div>
+                            </div>
+                            <button class="learn-more-btn">Learn More <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+                    <div class="method-card">
+                        <div class="method-image">
+                            <img src="/static/images/permaculture.jpg" alt="Permaculture Farming">
+                            <div class="method-badge">Sustainable Farming</div>
+                        </div>
+                        <div class="method-content">
+                            <h3>Permaculture</h3>
+                            <p class="method-description">A sustainable approach that works with natural ecosystems to create efficient and productive farming systems.</p>
+                            <div class="method-features">
+                                <div class="feature"><span class="feature-icon">♻️</span><span>Sustainable</span></div>
+                                <div class="feature"><span class="feature-icon">🌍</span><span>Eco-Friendly</span></div>
+                                <div class="feature"><span class="feature-icon">🌱</span><span>Self-Sustaining</span></div>
+                            </div>
+                            <button class="learn-more-btn">Learn More <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <aside class="right-sidebar">
+            <div class="header">
+                <div class="user-info">
+                    <span>Friday, April 5, 2024</span>
+                    <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="User Avatar" style="width: 40px; border-radius: 50%;">
+                </div>
+            </div>
+            <div id="calendar-container">
+                <div class="calendar-header">
+                    <h2>Calendar</h2>
+                    <div class="calendar-actions">
+                        <button id="addEventBtn" class="calendar-btn">+ Add Event</button>
+                    </div>
+                </div>
+                <div id="calendar"></div>
+                <div class="upcoming-events">
+                    <h3>Upcoming Events</h3>
+                    <div id="eventsList"></div>
+                </div>
+            </div>
+            <div class="overall-info">
+                <h2>Overall Information</h2>
+                <p>Score: </p>
+                <p>Completed Course: </p>
+                <p>Total Students: </p>
+                <p>Total Hours: 11</p>
+            </div>
+            <div class="market-share-container">
+                <h2>Market Share Price</h2>
+                <canvas id="marketShareChart"></canvas>
+            </div>
+        </aside>
+    </div>
+    <div id="eventModal" class="event-modal">
+        <div class="event-modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Add Farming Event</h3>
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title</label>
+                    <input type="text" id="eventTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type</label>
+                    <select id="eventType" required>
+                        <option value="planting">🌱 Planting</option>
+                        <option value="harvest">🌾 Harvest</option>
+                        <option value="maintenance">🔧 Maintenance</option>
+                        <option value="other">📝 Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Date</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <button type="submit" class="submit-btn">Save Event</button>
+            </form>
+        </div>
+    </div>
+    <script>
+    function toggleContent(card) {
+        const expandedContent = card.querySelector('.additional-content');
+        const allExpandedContent = document.querySelectorAll('.additional-content');
+        
+        allExpandedContent.forEach(content => {
+            if (content !== expandedContent) {
+                content.style.display = 'none';
+            }
+        });
+
+        expandedContent.style.display = expandedContent.style.display === 'block' ? 'none' : 'block';
+    }
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var eventsList = document.getElementById('eventsList');
+        var modal = document.getElementById('eventModal');
+        var addEventBtn = document.getElementById('addEventBtn');
+        var closeBtn = document.getElementsByClassName('close-modal')[0];
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'today'
+            },
+            events: [
+                { title: '🌱 Plant Corn', start: '2024-04-10' },
+                { title: '🌾 Harvest Wheat', start: '2024-04-15' },
+                { title: '🔧 Check Irrigation', start: '2024-04-20' }
+            ],
+            eventClick: function(info) {
+                if (confirm('Delete this event?')) {
+                    info.event.remove();
+                    updateUpcomingEvents();
+                }
+            }
+        });
+
+        calendar.render();
+
+        function updateUpcomingEvents() {
+            eventsList.innerHTML = '';
+            var events = calendar.getEvents();
+            var today = new Date();
+            
+            events.sort((a, b) => a.start - b.start)
+                  .filter(event => event.start >= today)
+                  .slice(0, 5)
+                  .forEach(event => {
+                      var eventEl = document.createElement('div');
+                      eventEl.className = 'event-item';
+                      eventEl.innerHTML = `<div class="event-info"><div>${event.title}</div><div class="event-date">${event.start.toLocaleDateString()}</div></div>`;
+                      eventsList.appendChild(eventEl);
+                  });
+        }
+
+        addEventBtn.onclick = function() {
+            modal.style.display = "block";
+            document.getElementById('eventDate').valueAsDate = new Date();
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.getElementById('eventForm').onsubmit = function(e) {
+            e.preventDefault();
+            var title = document.getElementById('eventTitle').value;
+            var type = document.getElementById('eventType').value;
+            var date = document.getElementById('eventDate').value;
+            var icon = { 'planting': '🌱', 'harvest': '🌾', 'maintenance': '🔧', 'other': '📝' }[type];
+
+            calendar.addEvent({ title: `${icon} ${title}`, start: date });
+            updateUpcomingEvents();
+            modal.style.display = "none";
+            this.reset();
+        }
+
+        updateUpcomingEvents();
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPath = window.location.pathname;
+        const sidebarLinks = document.querySelectorAll('.sidebar nav a');
+        
+        sidebarLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(currentPath)) {
+                link.classList.add('active');
+            }
+        });
+    });
+    </script>
+</body>
+</html>

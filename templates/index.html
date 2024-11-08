@@ -25,14 +25,41 @@
         }
 
         function openModal(crop) {
+            const modal = document.getElementById("infoModal");
             document.getElementById("modalHeading").innerText = "You picked " + crop;
-            document.getElementById("infoModal").style.display = "block";
-            // Store the crop type in a hidden input field
             document.getElementById("cropType").value = crop;
+            
+            // Show modal
+            modal.style.display = "block";
+            // Force reflow
+            modal.offsetHeight;
+            // Add active class for animations
+            modal.classList.add('active');
+            
+            // Prevent body scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            document.getElementById("infoModal").style.display = "none";
+            const modal = document.getElementById("infoModal");
+            
+            // Start fade out animation
+            modal.classList.remove('active');
+            
+            // Wait for animation to finish before hiding
+            setTimeout(() => {
+                modal.style.display = "none";
+                // Restore body scrolling
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById("infoModal");
+            if (event.target == modal) {
+                closeModal();
+            }
         }
 
         function getLocation() {

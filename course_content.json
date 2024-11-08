@@ -200,8 +200,89 @@
                     ]
                 }
             ]
+        },
+        "Wheat": {
+            "courses": [
+                {
+                    "title": "Wheat Cultivation Methods",
+                    "sessions_completed": "7/10",
+                    "content": "Learn about Wheat Cultivation",
+                    "videos": [
+                        "https://www.youtube.com/embed/video7",
+                        "https://www.youtube.com/embed/video8"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Understanding Wheat Farming",
+                            "url": "https://example.com/wheat-article"
+                        }
+                    ],
+                    "tips": [
+                        "Maintain proper water levels.",
+                        "Use organic fertilizers."
+                    ]
+                }
+            ]
+        },
+        "Soybeans": {
+            "courses": [
+                {
+                    "title": "Soybeans Cultivation Methods",
+                    "sessions_completed": "7/10",
+                    "content": "Learn about Soybeans Cultivation",
+                    "videos": [
+                        "https://www.youtube.com/embed/video7",
+                        "https://www.youtube.com/embed/video8"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Understanding Soybeans Farming",
+                            "url": "https://example.com/soybeans-article"
+                        }
+                    ]
+                }
+            ]
+        },
+        "Bananas": {
+            "courses": [
+                {
+                    "title": "Bananas Cultivation Methods",
+                    "sessions_completed": "7/10",
+                    "content": "Learn about Bananas Cultivation",
+                    "videos": [
+                        "https://www.youtube.com/embed/video7",
+                        "https://www.youtube.com/embed/video8"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Understanding Bananas Farming",
+                            "url": "https://example.com/bananas-article"
+                        }
+                    ]
+                }
+            ]
+        },
+        "Cassava": {
+            "courses": [
+                {
+                    "title": "Cassava Cultivation Methods",
+                    "sessions_completed": "7/10",
+                    "content": "Learn about Cassava Cultivation",
+                    "videos": [
+                        "https://www.youtube.com/embed/video7",
+                        "https://www.youtube.com/embed/video8"
+                    ],
+                    "articles": [
+                        {
+                            "title": "Understanding Cassava Farming",
+                            "url": "https://example.com/cassava-article"
+                        }
+                    ]
+                }
+            ]
         }
     },
+
     "farm_sizes": {
         "small": {
             "recommendations": [
