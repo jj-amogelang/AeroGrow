@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farming Course Certificate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='community.css') }}">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            padding: 40px;
-            background-color: #f5f5f5;
-        }
+        
         .certificate {
             max-width: 800px;
             margin: 0 auto;
@@ -18,11 +14,6 @@
             background-color: white;
             border: 20px solid #4CAF50;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .logo {
-            font-size: 36px;
-            color: #4CAF50;
-            margin-bottom: 20px;
         }
         h1 {
             color: #333;
@@ -51,17 +42,45 @@
             padding-top: 10px;
         }
         .print-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
+            margin-top: 30px;
+            padding: 12px 25px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, transform 0.3s;
         }
         .print-btn:hover {
             background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .print-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+            z-index: 0;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        .print-btn:hover::after {
+            width: 400%;
+            height: 400%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .print-btn span {
+            position: relative;
+            z-index: 1;
         }
         @media print {
             .print-btn {
@@ -77,20 +96,40 @@
     </style>
 </head>
 <body>
-    <div class="certificate">
+    <nav class="navbar">
         <div class="logo">AeroGrow</div>
-        <h1>Certificate of Completion</h1>
-        <p class="recipient">This certifies that</p>
-        <h2>{{ name }}</h2>
-        <p class="description">
-            has successfully completed the Farming Course, demonstrating proficiency
-            in agricultural practices, sustainable farming methods, and crop management.
-        </p>
-        <p class="date">Awarded on {{ date }}</p>
-        <div class="signature">
-            Program Director
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <a href="{{ url_for('recommendations') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('learning_path', cropType=cropType, farmSize=farmSize, farmLocation=farmLocation) }}"><i class="icon">📚</i>Learning Path</a>
+                <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
+                <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
+                <a href="{{ url_for('aerogrow_ai') }}"><i class="icon">🤖</i>AeroGro AI</a>
+                <a href="{{ url_for('generate_certificate') }}"><i class="icon">🏆</i>Certifications</a>
+                <a href=""><i class="icon">💰</i>Programs and Funding</a>
+                <a href=""><i class="icon">⚙️</i>Settings</a>
+            </nav>
+        </aside>
+        <div class="certificate">
+            <div class="logo">AeroGrow</div>
+            <h1>Certificate of Completion</h1>
+            <p class="recipient">This certifies that</p>
+            <h2>{{ name }}</h2>
+            <p class="description">
+                has successfully completed the Farming Course, demonstrating proficiency
+                in agricultural practices, sustainable farming methods, and crop management.
+            </p>
+            <p class="date">Awarded on {{ date }}</p>
+            <div class="signature">Program Director</div>
         </div>
+        <button class="print-btn" onclick="window.print()"><span>Print Certificate</span></button>
     </div>
-    <button class="print-btn" onclick="window.print()">Print Certificate</button>
 </body>
 </html>

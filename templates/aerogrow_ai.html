@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGrow AI - Future Works</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='community.css') }}">
+    <style>
+        h1 {
+            font-size: 36px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-left: 5px solid #4CAF50;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
+        .future-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">AeroGrow</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <a href="{{ url_for('recommendations') }}"><i class="icon">🏠</i>Dashboard</a>
+                <a href="{{ url_for('learning_path', cropType=cropType, farmSize=farmSize, farmLocation=farmLocation) }}"><i class="icon">📚</i>Learning Path</a>
+                <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
+                <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
+                <a href="{{ url_for('aerogrow_ai') }}" class="active"><i class="icon">🤖</i>AeroGro AI</a>
+                <a href="{{ url_for('generate_certificate') }}"><i class="icon">🏆</i>Certifications</a>
+                <a href=""><i class="icon">💰</i>Programs and Funding</a>
+                <a href=""><i class="icon">⚙️</i>Settings</a>
+            </nav>
+        </aside>
+        <div class="future-content">
+            <h1>AeroGrow AI - Future Works</h1>
+        <p>
+            Welcome to the AeroGrow AI page! Here, we envision a future where artificial intelligence plays a pivotal role in enhancing agricultural practices. Our goal is to integrate advanced AI technologies to assist farmers in making informed decisions, optimizing crop yields, and promoting sustainable farming methods.
+        </p>
+        <p>
+            In the coming months, we plan to introduce features that will leverage machine learning algorithms to analyze data from various sources, including weather patterns, soil conditions, and crop health. This will empower farmers with actionable insights tailored to their specific needs.
+        </p>
+        <div class="highlight">
+            <strong>Key Features to Look Forward To:</strong>
+            <ul>
+                <li>Personalized farming recommendations based on AI analysis.</li>
+                <li>Predictive analytics for crop management and yield forecasting.</li>
+                <li>Integration with IoT devices for real-time monitoring.</li>
+                <li>Community-driven insights and shared experiences.</li>
+            </ul>
+        </div>
+        <p>
+            Stay tuned as we continue to develop these exciting features that will revolutionize the way we approach farming. Together, we can cultivate a more sustainable future!
+        </p>
+        </div>
+    </div>
+</body>
+</html>

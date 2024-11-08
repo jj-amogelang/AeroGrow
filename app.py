@@ -138,7 +138,11 @@ def get_forecast():
 
 @app.route('/community')
 def community():
-    return render_template('community.html')  # Ensure you have a community.html template
+    return render_template('community.html')  
+
+@app.route('/aerogrow_ai')
+def aerogrow_ai():
+    return render_template('aerogrow_ai.html')  
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():

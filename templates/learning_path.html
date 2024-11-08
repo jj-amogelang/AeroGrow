@@ -6,20 +6,10 @@
     <title>Learning Path - AeroGrow</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- FullCalendar Dependencies -->
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.11/index.global.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.11/index.global.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.11/index.global.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.11/index.global.min.js'></script>
-    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.11/main.min.css' rel='stylesheet' />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- navbar -->
     <nav class="navbar">
-        <div class="logo">
-            AeroGrow
-        </div>
+        <div class="logo">AeroGrow</div>
         <ul class="nav-links">
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="">News</a></li>
@@ -34,8 +24,8 @@
                 <a href="{{ url_for('learning_path', cropType=cropType, farmSize=farmSize, farmLocation=farmLocation) }}"><i class="icon">📚</i>Learning Path</a>
                 <a href="{{ url_for('test') }}"><i class="icon">📝</i>Take Test</a>
                 <a href="{{ url_for('community') }}"><i class="icon">👥</i>Community</a>
-                <a href=""><i class="icon">🤖</i>AeroGro AI</a>
-                <a href="{{ url_for('generate_certificate') }}"><i class="icon">🏆</i> Certifications</a>
+                <a href="{{ url_for('aerogrow_ai') }}"><i class="icon">🤖</i>AeroGro AI</a>
+                <a href="{{ url_for('generate_certificate') }}"><i class="icon">🏆</i>Certifications</a>
                 <a href=""><i class="icon">💰</i>Programs and Funding</a>
                 <a href=""><i class="icon">⚙️</i>Settings</a>
             </nav>
@@ -46,107 +36,49 @@
                     <h1>Welcome to Your Learning Journey</h1>
                     <p class="subtitle">Master {{ crop_type }} farming with our comprehensive curriculum</p>
                 </div>
-
                 <div class="intro-grid">
-                    <!-- Video Card -->
                     <div class="intro-card featured">
                         <div class="video-container">
                             <div class="video-thumbnail">
                                 <img src="/static/images/teaching.png" alt="Video Thumbnail">
-                                <div class="play-button">
-                                    <span>▶</span>
-                                    <div class="ripple"></div>
-                                </div>
+                                <div class="play-button">▶</div>
                             </div>
                             <h3>Getting Started with {{ crop_type }} Farming</h3>
                             <p>A comprehensive introduction to your farming journey</p>
                         </div>
                     </div>
-
-                    <!-- Quick Stats -->
                     <div class="intro-card stats">
                         <h3>Your Learning Stats</h3>
                         <div class="stats-grid">
-                            <div class="stat-item">
-                                <span class="stat-icon">📚</span>
-                                <span class="stat-value">4</span>
-                                <span class="stat-label">Courses</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon">⏱️</span>
-                                <span class="stat-value">12</span>
-                                <span class="stat-label">Hours</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon">🎯</span>
-                                <span class="stat-value">24</span>
-                                <span class="stat-label">Lessons</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon">🏆</span>
-                                <span class="stat-value">3</span>
-                                <span class="stat-label">Certificates</span>
-                            </div>
+                            <div class="stat-item"><span class="stat-icon">📚</span><span class="stat-value">4</span><span class="stat-label">Courses</span></div>
+                            <div class="stat-item"><span class="stat-icon">⏱️</span><span class="stat-value">12</span><span class="stat-label">Hours</span></div>
+                            <div class="stat-item"><span class="stat-icon">🎯</span><span class="stat-value">24</span><span class="stat-label">Lessons</span></div>
+                            <div class="stat-item"><span class="stat-icon">🏆</span><span class="stat-value">3</span><span class="stat-label">Certificates</span></div>
                         </div>
                     </div>
-
-                    <!-- Learning Path -->
                     <div class="intro-card path">
                         <h3>Your Learning Path</h3>
                         <div class="path-steps">
-                            <div class="path-step">
-                                <div class="step-marker completed">1</div>
-                                <div class="step-content">
-                                    <h4>Fundamentals</h4>
-                                    <p>Basic farming concepts and principles</p>
-                                </div>
-                            </div>
-                            <div class="path-step">
-                                <div class="step-marker active">2</div>
-                                <div class="step-content">
-                                    <h4>Practical Skills</h4>
-                                    <p>Hands-on farming techniques</p>
-                                </div>
-                            </div>
-                            <div class="path-step">
-                                <div class="step-marker">3</div>
-                                <div class="step-content">
-                                    <h4>Advanced Methods</h4>
-                                    <p>Modern farming technologies</p>
-                                </div>
-                            </div>
+                            <div class="path-step"><div class="step-marker completed">1</div><div class="step-content"><h4>Fundamentals</h4><p>Basic farming concepts and principles</p></div></div>
+                            <div class="path-step"><div class="step-marker active">2</div><div class="step-content"><h4>Practical Skills</h4><p>Hands-on farming techniques</p></div></div>
+                            <div class="path-step"><div class="step-marker">3</div><div class="step-content"><h4>Advanced Methods</h4><p>Modern farming technologies</p></div></div>
                         </div>
                     </div>
-
-                    <!-- Key Points -->
                     <div class="intro-card key-points">
                         <h3>What You'll Learn</h3>
                         <ul class="points-list">
-                            <li>
-                                <span class="point-icon">🌱</span>
-                                <span>Complete guide to {{ crop_type }} cultivation</span>
-                            </li>
-                            <li>
-                                <span class="point-icon">🌍</span>
-                                <span>Location-specific farming techniques for {{ farm_location }}</span>
-                            </li>
-                            <li>
-                                <span class="point-icon">📏</span>
-                                <span>Best practices for {{ farm_size }} farming</span>
-                            </li>
+                            <li><span class="point-icon">🌱</span>Complete guide to {{ crop_type }} cultivation</li>
+                            <li><span class="point-icon">🌍</span>Location-specific farming techniques for {{ farm_location }}</li>
+                            <li><span class="point-icon">📏</span>Best practices for {{ farm_size }} farming</li>
                         </ul>
                     </div>
                 </div>
             </section>
-            <div class="header">
-                <h1>Learning Paths</h1>
-            </div>
+            <div class="header"><h1>Learning Paths</h1></div>
             <div class="my-courses">
                 {% for course in courses %}
                     <div class="course-card" onclick="toggleContent(this)">
-                        <div class="progress-indicator">
-                            {{ course.progress }}%
-                        </div>
+                        <div class="progress-indicator">{{ course.progress }}%</div>
                         <h3>{{ course.title }}</h3>
                         <p>Sessions completed: {{ course.sessions_completed }}/{{ course.total_sessions }}</p>
                         <div class="additional-content" style="display: none;">
@@ -154,47 +86,29 @@
                             <div class="video-container">
                                 <h5>Course Videos</h5>
                                 {% for video in course.videos %}
-                                    <iframe 
-                                        src="{{ video }}" 
-                                        title="Course video"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
-                                    </iframe>
+                                    <iframe src="{{ video }}" title="Course video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 {% endfor %}
                             </div>
                             <div class="article">
                                 <h5>Recommended Reading</h5>
                                 {% for article in course.articles %}
-                                    <p>
-                                        <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">
-                                            {{ article.title }}
-                                        </a>
-                                    </p>
+                                    <p><a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">{{ article.title }}</a></p>
                                 {% endfor %}
                             </div>
                             <div class="tips">
                                 <h5>Key Takeaways</h5>
-                                <ul>
-                                    {% for tip in course.tips %}
-                                        <li>📌 {{ tip }}</li>
-                                    {% endfor %}
-                                </ul>
+                                <ul>{% for tip in course.tips %}<li>📌 {{ tip }}</li>{% endfor %}</ul>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
-            <br>
-            <br>
-            <br>
             <section class="alternative-methods">
                 <div class="section-header">
                     <h2>Alternative Farming Methods</h2>
                     <p>Explore modern and sustainable farming techniques</p>
                 </div>
-
                 <div class="methods-grid">
-                    <!-- Hydroponics Card -->
                     <div class="method-card">
                         <div class="method-image">
                             <img src="/static/images/hydroponics.jpg" alt="Hydroponics Farming">
@@ -202,31 +116,15 @@
                         </div>
                         <div class="method-content">
                             <h3>Hydroponics</h3>
-                            <p class="method-description">
-                                Grow plants using water-based nutrient solutions without soil. Perfect for controlled environments and urban farming.
-                            </p>
+                            <p class="method-description">Grow plants using water-based nutrient solutions without soil. Perfect for controlled environments and urban farming.</p>
                             <div class="method-features">
-                                <div class="feature">
-                                    <span class="feature-icon">💧</span>
-                                    <span>Water Efficient</span>
-                                </div>
-                                <div class="feature">
-                                    <span class="feature-icon">🏙️</span>
-                                    <span>Space Saving</span>
-                                </div>
-                                <div class="feature">
-                                    <span class="feature-icon">🌿</span>
-                                    <span>Year-round Growth</span>
-                                </div>
+                                <div class="feature"><span class="feature-icon">💧</span><span>Water Efficient</span></div>
+                                <div class="feature"><span class="feature-icon">🏙️</span><span>Space Saving</span></div>
+                                <div class="feature"><span class="feature-icon">🌿</span><span>Year-round Growth</span></div>
                             </div>
-                            <button class="learn-more-btn">
-                                Learn More
-                                <span class="arrow">→</span>
-                            </button>
+                            <button class="learn-more-btn">Learn More <span class="arrow">→</span></button>
                         </div>
                     </div>
-
-                    <!-- Permaculture Card -->
                     <div class="method-card">
                         <div class="method-image">
                             <img src="/static/images/permaculture.jpg" alt="Permaculture Farming">
@@ -234,27 +132,13 @@
                         </div>
                         <div class="method-content">
                             <h3>Permaculture</h3>
-                            <p class="method-description">
-                                A sustainable approach that works with natural ecosystems to create efficient and productive farming systems.
-                            </p>
+                            <p class="method-description">A sustainable approach that works with natural ecosystems to create efficient and productive farming systems.</p>
                             <div class="method-features">
-                                <div class="feature">
-                                    <span class="feature-icon">♻️</span>
-                                    <span>Sustainable</span>
-                                </div>
-                                <div class="feature">
-                                    <span class="feature-icon">🌍</span>
-                                    <span>Eco-Friendly</span>
-                                </div>
-                                <div class="feature">
-                                    <span class="feature-icon">🌱</span>
-                                    <span>Self-Sustaining</span>
-                                </div>
+                                <div class="feature"><span class="feature-icon">♻️</span><span>Sustainable</span></div>
+                                <div class="feature"><span class="feature-icon">🌍</span><span>Eco-Friendly</span></div>
+                                <div class="feature"><span class="feature-icon">🌱</span><span>Self-Sustaining</span></div>
                             </div>
-                            <button class="learn-more-btn">
-                                Learn More
-                                <span class="arrow">→</span>
-                            </button>
+                            <button class="learn-more-btn">Learn More <span class="arrow">→</span></button>
                         </div>
                     </div>
                 </div>
@@ -321,33 +205,16 @@
     </div>
     <script>
     function toggleContent(card) {
-        const expandedContent = card.querySelector('.expanded-content');
-        const arrow = card.querySelector('.arrow');
-        const allExpandedContent = document.querySelectorAll('.expanded-content');
-        const allArrows = document.querySelectorAll('.arrow');
+        const expandedContent = card.querySelector('.additional-content');
+        const allExpandedContent = document.querySelectorAll('.additional-content');
         
-        // Close all other cards
         allExpandedContent.forEach(content => {
-            if (content !== expandedContent && content.style.display === 'block') {
+            if (content !== expandedContent) {
                 content.style.display = 'none';
             }
         });
-        
-        allArrows.forEach(arr => {
-            if (arr !== arrow) {
-                arr.style.transform = 'rotate(0deg)';
-            }
-        });
 
-        // Toggle clicked card
-        if (expandedContent.style.display === 'none' || expandedContent.style.display === '') {
-            expandedContent.style.display = 'block';
-            arrow.style.transform = 'rotate(180deg)';
-            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-            expandedContent.style.display = 'none';
-            arrow.style.transform = 'rotate(0deg)';
-        }
+        expandedContent.style.display = expandedContent.style.display === 'block' ? 'none' : 'block';
     }
     </script>
     <script>
@@ -358,7 +225,6 @@
         var addEventBtn = document.getElementById('addEventBtn');
         var closeBtn = document.getElementsByClassName('close-modal')[0];
 
-        // Initialize calendar
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             headerToolbar: {
@@ -366,23 +232,10 @@
                 center: 'title',
                 right: 'today'
             },
-            height: 'auto',
             events: [
-                {
-                    title: '🌱 Plant Corn',
-                    start: '2024-04-10',
-                    type: 'planting'
-                },
-                {
-                    title: '🌾 Harvest Wheat',
-                    start: '2024-04-15',
-                    type: 'harvest'
-                },
-                {
-                    title: '🔧 Check Irrigation',
-                    start: '2024-04-20',
-                    type: 'maintenance'
-                }
+                { title: '🌱 Plant Corn', start: '2024-04-10' },
+                { title: '🌾 Harvest Wheat', start: '2024-04-15' },
+                { title: '🔧 Check Irrigation', start: '2024-04-20' }
             ],
             eventClick: function(info) {
                 if (confirm('Delete this event?')) {
@@ -394,7 +247,6 @@
 
         calendar.render();
 
-        // Update upcoming events list
         function updateUpcomingEvents() {
             eventsList.innerHTML = '';
             var events = calendar.getEvents();
@@ -406,17 +258,11 @@
                   .forEach(event => {
                       var eventEl = document.createElement('div');
                       eventEl.className = 'event-item';
-                      eventEl.innerHTML = `
-                          <div class="event-info">
-                              <div>${event.title}</div>
-                              <div class="event-date">${event.start.toLocaleDateString()}</div>
-                          </div>
-                      `;
+                      eventEl.innerHTML = `<div class="event-info"><div>${event.title}</div><div class="event-date">${event.start.toLocaleDateString()}</div></div>`;
                       eventsList.appendChild(eventEl);
                   });
         }
 
-        // Event form handling
         addEventBtn.onclick = function() {
             modal.style.display = "block";
             document.getElementById('eventDate').valueAsDate = new Date();
@@ -437,77 +283,24 @@
             var title = document.getElementById('eventTitle').value;
             var type = document.getElementById('eventType').value;
             var date = document.getElementById('eventDate').value;
-            
-            var icon = {
-                'planting': '🌱',
-                'harvest': '🌾',
-                'maintenance': '🔧',
-                'other': '📝'
-            }[type];
+            var icon = { 'planting': '🌱', 'harvest': '🌾', 'maintenance': '🔧', 'other': '📝' }[type];
 
-            calendar.addEvent({
-                title: `${icon} ${title}`,
-                start: date,
-                type: type
-            });
-
+            calendar.addEvent({ title: `${icon} ${title}`, start: date });
             updateUpcomingEvents();
             modal.style.display = "none";
             this.reset();
         }
 
-        // Initial upcoming events
         updateUpcomingEvents();
     });
     </script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var ctx = document.getElementById('marketShareChart').getContext('2d');
-        var marketShareChart = new Chart(ctx, {
-            type: 'bar', // Change to 'line' or 'pie' as needed
-            data: {
-                labels: ['Corn', 'Tomatoes', 'Potatoes', 'Rice'], // Example crop names
-                datasets: [{
-                    label: 'Market Share Price',
-                    data: [120, 150, 100, 180], // Example market share prices
-                    backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 99, 132, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 99, 132, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get current page path
         const currentPath = window.location.pathname;
-        
-        // Find all sidebar links
         const sidebarLinks = document.querySelectorAll('.sidebar nav a');
         
-        // Remove active class from all links
         sidebarLinks.forEach(link => {
             link.classList.remove('active');
-            
-            // Add active class if href matches current path
             if (link.getAttribute('href').includes(currentPath)) {
                 link.classList.add('active');
             }
